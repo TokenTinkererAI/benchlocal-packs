@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "rootDir": ".",
+    "outDir": "dist-engine",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "incremental": false,
+    "tsBuildInfoFile": "./tsconfig.engine.tsbuildinfo"
+  },
+  "include": [
+    "cli/selftest.ts",
+    "lib/types.ts",
+    "lib/python.ts",
+    "lib/executor.ts",
+    "lib/prompts.ts",
+    "lib/extract.ts",
+    "lib/model-client.ts",
+    "lib/generated/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "dist-cli", "dist-engine"]
+}

@@ -1,0 +1,17 @@
+# NOTICE
+
+## MATH-500 data
+
+This pack contains all 500 problems of **MATH-500**, the test subset of the **MATH** dataset assembled by OpenAI for *"Let's Verify Step by Step"*.
+
+- **MATH** — *"Measuring Mathematical Problem Solving With the MATH Dataset"*, Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, Jacob Steinhardt (2021), arXiv:2103.03874. Upstream repository: [hendrycks/math](https://github.com/hendrycks/math).
+- **MATH-500** — the 500-problem subset of MATH used in *"Let's Verify Step by Step"*, Karl Cobbe et al. / Hunter Lightman et al. (2023), arXiv:2305.20050, published with the [openai/prm800k](https://github.com/openai/prm800k) data (`math_splits/`).
+- **Vendored source**: [HuggingFaceH4/MATH-500](https://huggingface.co/datasets/HuggingFaceH4/MATH-500) (Hugging Face dataset), revision `6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be`, file `test.jsonl` — 500 rows with `problem`, `solution`, `answer`, `subject`, `level`, `unique_id`.
+- **License**: **MIT**, from both upstream projects — MATH is MIT (Copyright © 2021 Dan Hendrycks), and the MATH-500 split was published by OpenAI under the MIT-licensed prm800k repository (Copyright © 2023 OpenAI). Copies of the upstream license texts and the exact provenance of the vendored file are kept at `data/LICENSE-math`.
+- **Vendored file**: `data/math_500.jsonl` — a byte-identical copy of the upstream `test.jsonl` (500 JSON objects, one per line, fields and order preserved). SHA-256: `35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132`.
+
+The pack evaluates `problem` verbatim and compares the model's final answer with the published `answer` string after textual normalization (see [METHODOLOGY.md](METHODOLOGY.md)); it does not use `solution` as a reference during runs.
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Problem text and the answer key remain the work of the upstream MATH / MATH-500 authors, included here under the MIT terms with the attribution above.

@@ -1,0 +1,27 @@
+{
+  "name": "humaneval-plus-164",
+  "version": "1.0.1",
+  "description": "BenchLocal Bench Pack for EvalPlus HumanEval+ (164 problems graded against the expanded base+plus test suites) with local Python execution - no Docker required.",
+  "license": "MIT",
+  "author": "TokenTinkerer",
+  "scripts": {
+    "build:dataset": "node scripts/build-dataset.mjs",
+    "build:benchlocal": "tsc -p tsconfig.benchlocal.json",
+    "build:cli": "tsc -p tsconfig.cli.json",
+    "build": "npm run build:benchlocal && npm run build:cli",
+    "typecheck": "tsc --noEmit",
+    "cli": "npm run build:cli && node dist-cli/cli/run.js",
+    "selftest": "npm run build:cli && node dist-cli/cli/selftest.js",
+    "check:pack": "npm run build && node scripts/check-pack.mjs",
+    "mock": "node scripts/mock-server.mjs",
+    "pack": "node scripts/pack-artifact.mjs"
+  },
+  "dependencies": {
+    "@benchlocal/core": "0.3.0",
+    "@benchlocal/sdk": "0.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}

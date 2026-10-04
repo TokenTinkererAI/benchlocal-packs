@@ -1,0 +1,18 @@
+# NOTICE
+
+## LiveCodeBench
+
+This pack evaluates **LiveCodeBench** (release_v6), the contamination-checked code-generation benchmark by Naman Jain, King Han, Alex Gu, Wen-Ding Li, Fanjia Yan, Tianjun Zhang, Sida Wang, Armando Solar-Lezama, Koushik Sen and Ion Stoica — "LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code" (arXiv:2403.07974).
+
+- Benchmark: [LiveCodeBench/LiveCodeBench](https://github.com/LiveCodeBench/LiveCodeBench) (MIT license).
+- Dataset: [`livecodebench/code_generation_lite`](https://huggingface.co/datasets/livecodebench/code_generation_lite), release_v6 split (test.jsonl … test6.jsonl; 1055 problems).
+- The vendored per-problem files under `data/problems/` preserve the official records (including the encrypted private test cases, exactly as published). `data/manifest.json` records the SHA-256 of each source file.
+- A copy of the upstream license is kept at `data/LICENSE-livecodebench`.
+
+## Adapted evaluation code
+
+`harness/run_problem.py` adapts the official evaluation code (`lcb_runner/evaluation/testing_util.py` and `lcb_runner/benchmarks/code_generation.py`, MIT — LiveCodeBench): decryption of private test cases, the reliability guard, code wrapping (`clean_if_name`, `make_function`), stdin/stdout patching, and the exact output-comparison rules are mirrored from upstream with two documented changes — the Windows `hasattr` fix for the reliability guard (upstream's unconditional `os.fork = None` breaks `import random` on Windows) and per-test timeouts via a watchdog thread + `PyThreadState_SetAsyncExc` instead of `signal.alarm` (not available on Windows).
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Problem statements, test cases and the evaluation semantics remain the work of the LiveCodeBench authors, included here under their MIT license with the attribution above.

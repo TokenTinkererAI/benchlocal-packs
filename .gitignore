@@ -1,0 +1,14 @@
+# Dependencies and outputs are not committed per pack
+**/node_modules/
+**/results/
+**/*.log
+**/__pycache__/
+**/*.pyc
+**/*.tsbuildinfo
+
+# Data omitted from this repo for size reasons (regenerate per pack README):
+# LiveCodeBench per-problem files (~4.2 GB)
+livecodebench-v6/data/
+# HumanEval+ expanded suites above GitHub's 100 MB per-file limit
+humaneval-plus-164/data/problems/HumanEval_15.json
+humaneval-plus-164/data/problems/HumanEval_130.json

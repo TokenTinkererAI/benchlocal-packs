@@ -1,0 +1,36 @@
+NOTICE
+
+HumanEval-164 includes material from the HumanEval benchmark and harness.
+
+OpenAI HumanEval (openai/human-eval)
+------------------------------------
+
+Source: https://github.com/openai/human-eval
+License: MIT — Copyright (c) OpenAI (https://openai.com)
+
+The HumanEval dataset is redistributed unmodified as `data/HumanEval.jsonl.gz`;
+a copy of the upstream license is included at `data/LICENSE-human-eval`. The
+164 problem prompts and tests compiled into this pack are taken from that
+dataset. The benchmark was introduced in "Evaluating Large Language Models
+Trained on Code" (Mark Chen et al., 2021; arXiv:2107.03374).
+
+Guard adaptation
+----------------
+
+The execution reliability guard in this pack (`lib/executor.ts`, and the
+check programs it produces at run time) is adapted from the reliability guard
+in openai/human-eval. The adaptation changes how the guard disables
+functions: the upstream guard assigns each disabled function unconditionally
+(for example `os.fork = None`), while this pack disables a function only if
+the running platform actually provides it (a `hasattr` check), so that
+Windows does not gain attributes that break imports such as `random`. The
+guard, upstream and adapted, is a reliability measure and is not a security
+sandbox or a security boundary of any kind.
+
+No endorsement
+--------------
+
+This is an independent third-party package. It is not affiliated with,
+sponsored by, endorsed by, or maintained by OpenAI. References to OpenAI and
+HumanEval identify the source of the benchmark and credit its authors. All
+product names and trademarks are the property of their respective owners.

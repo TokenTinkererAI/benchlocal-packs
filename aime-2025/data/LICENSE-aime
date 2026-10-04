@@ -1,0 +1,113 @@
+# AIME 2025 — data licence, terms and provenance
+#
+# This file covers the vendored data in data/aime_2025.jsonl only. The code in
+# this repository is MIT licensed (see ../LICENSE).
+
+===============================================================================
+1. PRIMARY SOURCE — MathArena/aime_2025 (CC BY-NC-SA 4.0)
+===============================================================================
+
+Dataset card: https://huggingface.co/datasets/MathArena/aime_2025
+Homepage:     https://matharena.ai/
+Repository:   https://github.com/eth-sri/matharena
+Revision:     c94da77eb22bbd6439e62a323bec18493a421302
+Licence:      cc-by-nc-sa-4.0  (Attribution-NonCommercial-ShareAlike 4.0 International)
+Licence text: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+Upstream card, verbatim:
+
+    ### Dataset Summary
+    This dataset contains the questions from AIME 2025 used for the MathArena
+    Leaderboard.
+
+    ### Data Fields
+    - `problem_idx` (int64): Problem index within the corresponding MathArena
+      benchmark.
+    - `problem` (string): Problem statement, usually stored as LaTeX source.
+    - `answer` (int64): Gold final answer.
+    - `problem_type` (list[string]): Problem type/category labels.
+
+    ### Source Data
+    The original questions were sourced from the AIME 2025 competition.
+    Questions were extracted, converted to LaTeX and verified.
+
+    ### Licensing Information
+    This dataset is licensed under the Attribution-NonCommercial-ShareAlike 4.0
+    International (CC BY-NC-SA 4.0). Please abide by the license when using the
+    provided data.
+
+    ### Citation Information
+    @article{dekoninck2026matharena,
+          title={Beyond Benchmarks: MathArena as an Evaluation Platform for
+                 Mathematics with LLMs},
+          author={Jasper Dekoninck and Nikola Jovanović and Tim Gehrunger and
+                  Kári Rögnvaldsson and Ivo Petrov and Chenhao Sun and
+                  Martin Vechev},
+          year={2026},
+          eprint={2605.00674},
+          archivePrefix={arXiv},
+          primaryClass={cs.CL},
+          url={https://arxiv.org/abs/2605.00674},
+    }
+
+Upstream evaluation card (eval.yaml), verbatim:
+
+    name: MathArena AIME 2025
+    description: The American Invitational Mathematics Exam (AIME) is a two-part
+      15-question, 3-hour examination used to determine qualification for the
+      USA Mathematical Olympiad (USAMO). Each answer is an integer between 0 and
+      999 inclusive.
+
+Redistribution terms applied here: attribution (this file + ../NOTICE),
+non-commercial use, share-alike for redistributions of the data. The pack's
+code remains MIT; the data does not.
+
+===============================================================================
+2. CROSS-CHECK SOURCES (answers verified, not vendored)
+===============================================================================
+
+opencompass/AIME2025
+  Card:     https://huggingface.co/datasets/opencompass/AIME2025
+  Revision: a6ad95f611d72cf628a80b58bd0432ef6638f958
+  Licence:  MIT
+  Files:
+    aime2025-I.jsonl   sha256 b91b3c96f05d9635d2a0692b124ebe023c1ff59cb19c074275e6c4b349d0659e
+    aime2025-II.jsonl  sha256 16a2dcfbbf9db1b11f8a69a3ba5e4cac73e3641b19a37e2307e9c12240bbed5e
+  Fields:   question, answer (answers as strings; the AIME II Problem 5 entry is
+            the LaTeX string "336^\circ" - integer 336 with a degrees
+            annotation, normalised to 336 for the cross-check).
+
+yentinglin/aime_2025
+  Card:     https://huggingface.co/datasets/yentinglin/aime_2025
+  Revision: 6f71d77b0b89b9dabe07ab466c51df33f514df7f
+  Licence:  none declared on the dataset card
+  File:     data/train-00000-of-00001-243207c6c994e1bd.parquet
+            sha256 b74b507c1a4de7c9fafd2c83dfe2ef7b80579bcf0e0a754a1765db0f21c205fc
+  Fields:   id, problem, answer, solution, url (AoPS wiki link), year.
+
+Cross-check performed 2026-10-01 for all 30 problems: answers identical across
+the three mirrors; problem texts identical in content (typographic differences
+only). Details in ../METHODOLOGY.md.
+
+===============================================================================
+3. UNDERLYING MATERIAL — MAA / AMC
+===============================================================================
+
+The 2025 AIME I and AIME II problem sets are competition material of the
+Mathematical Association of America (MAA) / AMC program (AIME I administered
+2025-02-05, AIME II administered 2025-02-12). The mirrors above republish the
+problems for LLM evaluation. This pack redistributes them solely for
+non-commercial benchmarking and research, with attribution to the upstream
+mirrors and to the MAA as the origin of the contests. Nothing here implies MAA
+endorsement. AIME answers are integers from 000 to 999 by contest rule.
+
+===============================================================================
+4. VENDORED FILE — data/aime_2025.jsonl
+===============================================================================
+
+30 records, one per line:
+  {"problem_idx": 1..30, "contest": "AIME 2025 I" | "AIME 2025 II",
+   "number": 1..15, "problem": "<verbatim statement>", "answer": <int 0-999>}
+SHA-256: 90f729b5500adc6c1c6b69182a97d205cf8f57da7e8a8fbf02c6fafc693ab68e
+The file is pinned in scripts/generate-dataset.mjs; the pack build fails if it
+changes.

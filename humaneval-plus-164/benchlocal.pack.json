@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "id": "humaneval-plus-164",
+  "name": "HumanEval+-164",
+  "author": "TokenTinkerer",
+  "version": "1.0.1",
+  "description": "EvalPlus HumanEval+: the same 164 hand-written Python problems as HumanEval-164, graded by real execution against the expanded base + plus test suites (122,675 extra tests) with EvalPlus's comparison semantics. Runs entirely on the host with a local Python - no Docker or verifier container required.",
+  "entry": "./dist/benchlocal/index.js",
+  "requirements": {
+    "benchlocal": {
+      "minVersion": "0.2.0"
+    },
+    "hostFeatures": ["inferenceEndpoints"]
+  },
+  "samplingDefaults": {
+    "temperature": 0,
+    "max_tokens": 16384,
+    "request_timeout_seconds": 900
+  },
+  "theme": {
+    "accent": "#14b8a6"
+  },
+  "capabilities": {
+    "tools": false,
+    "multiTurn": false,
+    "streamingProgress": true,
+    "verification": false
+  }
+}

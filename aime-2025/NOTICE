@@ -1,0 +1,33 @@
+# NOTICE
+
+## AIME 2025 data
+
+This pack contains all 30 problems of the **2025 American Invitational Mathematics Examination** (AIME I, administered February 5, 2025; AIME II, administered February 12, 2025) — 15 problems per contest, each with its official integer answer in 0-999.
+
+The problems are competition material of the **Mathematical Association of America (MAA)** / AMC program. They are not redistributed here from an MAA file: the vendored text was taken from public evaluation mirrors that republish the 2025 AIME problem set for LLM benchmarking.
+
+### Vendored source (primary)
+
+- **`MathArena/aime_2025`** — the question set used for the MathArena leaderboard (ETH Zurich).
+  - Hub revision: `c94da77eb22bbd6439e62a323bec18493a421302`; file `data/train-00000-of-00001.parquet` (SHA-256 `9f9066ff48ad2e31f9bf1b1ac6d5e80693195f987985f2859f89dd25ffa51c2d`).
+  - Licence: **CC BY-NC-SA 4.0** (Attribution-NonCommercial-ShareAlike 4.0 International). Terms and citation are reproduced in [`data/LICENSE-aime`](data/LICENSE-aime).
+  - The vendored file `data/aime_2025.jsonl` is a faithful projection of that table: `problem` text verbatim, `answer` as the published integer, plus `contest`/`number` provenance fields derived from `problem_idx`.
+  - Vendored file SHA-256: `90f729b5500adc6c1c6b69182a97d205cf8f57da7e8a8fbf02c6fafc693ab68e`.
+
+### Cross-check sources (answers verified, not vendored)
+
+- **`opencompass/AIME2025`** — revision `a6ad95f611d72cf628a80b58bd0432ef6638f958`, files `aime2025-I.jsonl` (SHA-256 `b91b3c96f05d9635d2a0692b124ebe023c1ff59cb19c074275e6c4b349d0659e`) and `aime2025-II.jsonl` (SHA-256 `16a2dcfbbf9db1b11f8a69a3ba5e4cac73e3641b19a37e2307e9c12240bbed5e`); licence MIT. Its answer field for 2025 AIME II Problem 5 is the LaTeX string `336^\circ`, i.e. the integer 336 with a degrees annotation.
+- **`yentinglin/aime_2025`** — revision `6f71d77b0b89b9dabe07ab466c51df33f514df7f`, file `data/train-00000-of-00001-243207c6c994e1bd.parquet` (SHA-256 `b74b507c1a4de7c9fafd2c83dfe2ef7b80579bcf0e0a754a1765db0f21c205fc`); no licence declared on the dataset card. Carries AoPS URLs and worked solutions.
+
+**Cross-check result:** all 30 gold answers are identical across the three mirrors, and no problem statement differs in mathematical content — the texts differ only typographically (math-mode spacing, brace style, hyphenation, equivalent LaTeX commands) and in figure handling (the vendored MathArena text includes TikZ/Asymptote source for the 5 figure-bearing problems). See the provenance section of [METHODOLOGY.md](METHODOLOGY.md).
+
+### Terms of use / reproduction
+
+- The problem statements and answers remain the property of their authors (MAA competition material, as republished by the mirrors above). They are included here for non-commercial evaluation and research use.
+- The vendored text is redistributed under the upstream **CC BY-NC-SA 4.0** terms: attribution (this NOTICE and `data/LICENSE-aime`), non-commercial use, and share-alike for redistributions of the data.
+- Do not commit AIME 2025 problems into training corpora or relicense the data as MIT: only the **code** in this repository is MIT.
+- No repository may claim MAA endorsement.
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Problem text and answer key remain the work of their upstream authors and mirrors, included under the terms above.

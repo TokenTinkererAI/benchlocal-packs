@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "id": "math-500",
+  "name": "MATH-500",
+  "author": "TokenTinkerer",
+  "version": "1.0.1",
+  "description": "MATH-500: the 500 competition-mathematics problems of the MATH test subset used in OpenAI's 'Let's Verify Step by Step' work, scored by boxed-answer extraction with textual LaTeX normalization against the published gold answer. No code execution required.",
+  "entry": "./dist/benchlocal/index.js",
+  "requirements": {
+    "benchlocal": {
+      "minVersion": "0.2.0"
+    },
+    "hostFeatures": ["inferenceEndpoints"]
+  },
+  "samplingDefaults": {
+    "temperature": 0,
+    "max_tokens": 16384,
+    "request_timeout_seconds": 900
+  },
+  "theme": {
+    "accent": "#8b5cf6"
+  },
+  "capabilities": {
+    "tools": false,
+    "multiTurn": false,
+    "streamingProgress": true,
+    "verification": false
+  }
+}

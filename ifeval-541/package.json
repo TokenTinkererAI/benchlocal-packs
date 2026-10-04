@@ -1,0 +1,28 @@
+{
+  "name": "ifeval-541",
+  "version": "1.0.1",
+  "description": "BenchLocal Bench Pack for IFEval (541 instruction-following prompts) - graded by the canonical programmatic constraint checks (strict + loose), no LLM judge.",
+  "license": "MIT",
+  "author": "TokenTinkerer",
+  "scripts": {
+    "build:dataset": "node scripts/build-dataset.mjs",
+    "build:benchlocal": "tsc -p tsconfig.benchlocal.json",
+    "build:cli": "tsc -p tsconfig.cli.json",
+    "build": "npm run build:benchlocal && npm run build:cli",
+    "typecheck": "tsc --noEmit",
+    "cli": "npm run build:cli && node dist-cli/cli/run.js",
+    "selftest": "npm run build:cli && node dist-cli/cli/selftest.js",
+    "check:checkers": "npm run build:cli && node scripts/check-checkers.mjs",
+    "mock": "node scripts/mock-server.mjs",
+    "probe": "node _reference/probe-pack.mjs",
+    "pack": "node scripts/pack-artifact.mjs"
+  },
+  "dependencies": {
+    "@benchlocal/core": "0.3.0",
+    "@benchlocal/sdk": "0.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}

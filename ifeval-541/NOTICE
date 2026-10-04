@@ -1,0 +1,72 @@
+# NOTICE
+
+## IFEval benchmark
+
+**IFEval: Instruction-Following Evaluation for Large Language Models** — Jeffrey
+Zhou, Tianjian Lu, Swaroop Mishra, Siddhartha Brahma, Sujoy Basu, Yi Luan, Denny
+Zhou, Le Hou (2023). Paper: <https://arxiv.org/abs/2311.07911>.
+
+### Dataset
+
+- Source: HuggingFace dataset repo [`google/IFEval`](https://huggingface.co/datasets/google/IFEval),
+  file `ifeval_input_data.jsonl` (downloaded with `hf download google/IFEval --repo-type dataset`).
+- License: **Apache-2.0** (the dataset card declares `license: apache-2.0`).
+- Vendored file: `data/ifeval.jsonl` (content unmodified), 541 records.
+  SHA-256: `6a85310ca8ce15eff755aa08a3a4ff931c7e273e7515ebb3c492ea85fd8288f2`.
+- The same prompt set also ships inside the reference repository. The two copies
+  differ in exactly one record (`IFEval/339`, key `2785`: the HuggingFace copy
+  says "at least one placeholder" where the repository copy says "at least 3
+  placeholders"; the attached kwargs are identical in both) plus a trailing
+  newline. This pack vendors the HuggingFace copy.
+- A copy of the upstream Apache-2.0 license text is kept at `data/LICENSE-ifeval`.
+
+### Reference checker code
+
+- Source: [`google-research/google-research`](https://github.com/google-research/google-research),
+  directory `instruction_following_eval/`, commit `e49bbfe381c9c0e564b937f1c4e163a2273c65cc`.
+- License: **Apache-2.0**, Copyright The Google Research Authors — a copy of the
+  license text is kept at `harness/ifeval/instruction_following_eval/LICENSE`.
+- Vendored files (byte-identical to upstream; git blob ids match, see
+  `harness/ifeval/instruction_following_eval/UPSTREAM.md`):
+  `instructions.py`, `instructions_util.py`, `instructions_registry.py`,
+  `evaluation_lib.py`.
+
+## Vendored third-party Python packages (`harness/ifeval/vendor/`)
+
+- **langdetect 1.0.9** — Copyright 2014-2015 Michal "Mimino" Danilak.
+  License: **Apache-2.0** (wheel metadata declares MIT; the upstream project's
+  `LICENSE` file, vendored at `harness/ifeval/vendor/langdetect/LICENSE`, is the
+  Apache License 2.0). Used unchanged to satisfy `import langdetect`.
+- **immutabledict 4.3.1** — Copyright (c) 2020 Corentin Garcia.
+  License: **MIT** (vendored at `harness/ifeval/vendor/immutabledict/LICENSE`).
+  Used unchanged to satisfy `import immutabledict`.
+
+## API-compatible stand-ins (this pack's own code, MIT)
+
+- `harness/ifeval/vendor/nltk/__init__.py` — a stdlib-backed stand-in for the
+  small `nltk` API surface used by the vendored checkers. It contains no NLTK
+  code; NLTK (Apache-2.0) is **not** shipped and **not** required.
+- `harness/ifeval/vendor/absl/logging.py` — a thin forwarder to the Python
+  standard library `logging`, used in place of `absl-py` (Apache-2.0), which is
+  **not** shipped and **not** required.
+
+The behavioural impact of both stand-ins is documented in
+[METHODOLOGY.md](METHODOLOGY.md) §7 ("Substitutions").
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE),
+Copyright © 2026 TokenTinkerer. Prompt text, instruction definitions and the
+grading logic remain the work of the IFEval authors, included here under
+Apache-2.0 with the attribution above.
+
+## Citation
+
+```bibtex
+@article{zhou2023instruction,
+  title={Instruction-Following Evaluation for Large Language Models},
+  author={Zhou, Jeffrey and Lu, Tianjian and Mishra, Swaroop and Brahma, Siddhartha and Basu, Sujoy and Luan, Yi and Zhou, Denny and Hou, Le},
+  journal={arXiv preprint arXiv:2311.07911},
+  year={2023}
+}
+```

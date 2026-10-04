@@ -1,0 +1,27 @@
+{
+  "name": "mmlu-pro",
+  "version": "1.0.1",
+  "description": "BenchLocal Bench Pack for MMLU-Pro (12,032 ten-option reasoning questions across 14 disciplines) - answer-letter match scoring, no execution needed.",
+  "license": "MIT",
+  "author": "TokenTinkerer",
+  "scripts": {
+    "vendor:dataset": "py -3 scripts/vendor-dataset.py",
+    "build:dataset": "node scripts/generate-dataset.mjs",
+    "build:benchlocal": "tsc -p tsconfig.benchlocal.json",
+    "build:cli": "tsc -p tsconfig.cli.json",
+    "build": "npm run build:benchlocal && npm run build:cli",
+    "typecheck": "tsc --noEmit",
+    "cli": "npm run build:cli && node dist-cli/cli/run.js",
+    "check:extraction": "npm run build:cli && node scripts/check-extraction.mjs",
+    "mock": "node scripts/mock-server.mjs",
+    "pack": "node scripts/pack-artifact.mjs"
+  },
+  "dependencies": {
+    "@benchlocal/core": "0.3.0",
+    "@benchlocal/sdk": "0.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}

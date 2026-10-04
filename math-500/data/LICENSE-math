@@ -1,0 +1,77 @@
+# MATH-500 — data licence, terms and provenance
+#
+# This file covers the vendored data in data/math_500.jsonl only. The code in
+# this repository is MIT licensed (see ../LICENSE).
+
+===============================================================================
+1. THE BENCHMARK — MATH (Hendrycks et al., 2021)
+===============================================================================
+
+  "Measuring Mathematical Problem Solving With the MATH Dataset"
+  Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart,
+  Eric Tang, Dawn Song, Jacob Steinhardt (2021) — arXiv:2103.03874
+  Repository: https://github.com/hendrycks/math
+  Licence:    MIT — Copyright (c) 2021 Dan Hendrycks
+  Licence text fetched from
+  https://raw.githubusercontent.com/hendrycks/math/main/LICENSE (MIT, verbatim):
+
+      MIT License
+
+      Copyright (c) 2021 Dan Hendrycks
+
+      Permission is hereby granted, free of charge, to any person obtaining a
+      copy of this software and associated documentation files (the
+      "Software"), to deal in the Software without restriction, including
+      without limitation the rights to use, copy, modify, merge, publish,
+      distribute, sublicense, and/or sell copies of the Software, and to
+      permit persons to whom the Software is furnished to do so, subject to
+      the following conditions:
+
+      The above copyright notice and this permission notice shall be included
+      in all copies or substantial portions of the Software.
+
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+      MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+      IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+      CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+      TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+      SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+===============================================================================
+2. THE 500-PROBLEM SUBSET — MATH-500 (Lightman et al., 2023 / OpenAI PRM800K)
+===============================================================================
+
+  MATH-500 is the 500-problem test subset of MATH assembled by OpenAI for
+  "Let's Verify Step by Step" (Lightman, Kosaraju, Burda, Edwards, Baker,
+  Lee, Leike, Schulman, Sutskever, Cobbe — 2023, arXiv:2305.20050) and
+  published with the PRM800K data:
+  Repository: https://github.com/openai/prm800k  (math_splits/)
+  Licence:    MIT — Copyright (c) 2023 OpenAI
+  Licence text fetched from
+  https://raw.githubusercontent.com/openai/prm800k/main/LICENSE.
+
+===============================================================================
+3. THE VENDORED FILE
+===============================================================================
+
+  Vendored as:  data/math_500.jsonl  (500 records, one JSON object per line)
+  Fetched from: https://huggingface.co/datasets/HuggingFaceH4/MATH-500
+  Hub revision: 6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be
+  Upstream file: test.jsonl
+  Upstream file SHA-256 (identical to the vendored copy):
+    35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132
+
+  The vendored file is a byte-identical copy of the upstream test.jsonl
+  (Hash of the Hugging Face blob and of data/math_500.jsonl match). Fields in
+  each record: problem, solution, answer, subject, level, unique_id — all
+  preserved verbatim; nothing is rewritten, dropped or reordered.
+
+  The pack uses two fields only: `problem` (the statement, sent verbatim) and
+  `answer` (the published gold answer, compared textually after
+  normalization). `solution`, `subject`, `level` and `unique_id` are used for
+  integrity checks and the per-subject result breakdown; the full record stays
+  in the vendored file so runs can be traced back to the exact bytes.
+
+  The code in this repository is MIT licensed; the data is included under the
+  upstream MIT terms above with attribution in NOTICE.

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "id": "gpqa-extended-546",
+  "name": "GPQA-Extended-546",
+  "author": "TokenTinkerer",
+  "version": "1.0.1",
+  "description": "GPQA Extended: 546 graduate-level, google-proof science questions (physics / chemistry / biology), multiple-choice, scored by exact answer match against the published key.",
+  "entry": "./dist/benchlocal/index.js",
+  "requirements": {
+    "benchlocal": {
+      "minVersion": "0.2.0"
+    },
+    "hostFeatures": [
+      "inferenceEndpoints"
+    ]
+  },
+  "samplingDefaults": {
+    "temperature": 0,
+    "max_tokens": 16384,
+    "request_timeout_seconds": 900
+  },
+  "theme": {
+    "accent": "#f59e0b"
+  },
+  "capabilities": {
+    "tools": false,
+    "multiTurn": false,
+    "streamingProgress": true,
+    "verification": false
+  }
+}

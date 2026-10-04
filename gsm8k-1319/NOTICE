@@ -1,0 +1,16 @@
+# NOTICE
+
+## GSM8K data
+
+GSM8K is the **"Grade School Math 8K"** dataset by Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse and John Schulman — *"Training Verifiers to Solve Math Word Problems"* (2021), arXiv:2110.14168.
+
+- Source: [openai/gsm8k](https://huggingface.co/datasets/openai/gsm8k) on Hugging Face — the `main` configuration, `test` split (1319 rows, distributed there as Parquet). Upstream repository: [openai/grade-school-math](https://github.com/openai/grade-school-math).
+- License: **MIT** — a copy of the upstream license text is kept at `data/LICENSE-gsm8k`.
+- Copyright © 2021 OpenAI.
+- Vendored file: `data/gsm8k_test.jsonl` — the upstream test split re-serialized from its Parquet container as one `{"question", "answer"}` JSON object per line, row order and content preserved (no row text modified). SHA-256: `752adc99f23132275139f1f7be57126b08735a55daf0c56859ee6df70abafbac`.
+
+Note: the published GSM8K test set contains a small number of noisy items; per the pack's "no repair" policy they are vendored and evaluated exactly as published (see the deviations section of [METHODOLOGY.md](METHODOLOGY.md)).
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Problem text and the answer key remain the work of the upstream GSM8K authors, included here under the MIT license with the attribution above.

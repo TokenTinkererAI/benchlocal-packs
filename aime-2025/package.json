@@ -1,0 +1,27 @@
+{
+  "name": "aime-2025",
+  "version": "1.0.1",
+  "description": "BenchLocal Bench Pack for AIME 2025 (30 competition math problems from 2025 AIME I + II) - exact integer answer-match scoring, no execution needed.",
+  "license": "MIT",
+  "author": "TokenTinkerer",
+  "scripts": {
+    "build:dataset": "node scripts/generate-dataset.mjs",
+    "build:benchlocal": "tsc -p tsconfig.benchlocal.json",
+    "build:cli": "tsc -p tsconfig.cli.json",
+    "build": "npm run build:benchlocal && npm run build:cli",
+    "typecheck": "tsc --noEmit",
+    "cli": "npm run build:cli && node dist-cli/cli/run.js",
+    "check:extraction": "npm run build:cli && node scripts/check-extraction.mjs",
+    "mock": "node scripts/mock-server.mjs",
+    "probe": "node _reference/probe-pack.mjs",
+    "pack": "npm run build:benchlocal && node scripts/pack-artifact.mjs"
+  },
+  "dependencies": {
+    "@benchlocal/core": "0.3.0",
+    "@benchlocal/sdk": "0.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}

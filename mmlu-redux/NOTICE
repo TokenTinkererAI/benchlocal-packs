@@ -1,0 +1,15 @@
+# NOTICE
+
+## MMLU-Redux data
+
+The question data in this pack is the verified subset of **MMLU-Redux**, from **"Are We Done with MMLU?"** by Aryo Pradipta Gema, Joshua Ong Jun Leang, Giwon Hong, Rohit Saxena, Alessio Devoto, Alberto Carlo Maria Mancino, Xuanli He, Yu Zhao, Xiaotang Du, Mohammad Reza Ghasemi Madani, Claire Barale, Robert McHardy, Joshua Harris, Jean Kaddour, Emile van Krieken and Pasquale Minervini (arXiv:2406.04127, NAACL 2025).
+
+- Source: [edinburgh-dawg/mmlu-redux-2.0](https://huggingface.co/datasets/edinburgh-dawg/mmlu-redux-2.0), revision `372ea425445d51e1ba1188c56e5e893f8138621f` (25 Feb 2025).
+- License: **Creative Commons Attribution 4.0 International (CC BY 4.0)** — a copy of the upstream license text is kept at `data/LICENSE-mmlu-redux`.
+- The underlying questions, options and original labels are taken by MMLU-Redux from [cais/mmlu](https://huggingface.co/datasets/cais/mmlu) — **"Measuring Massive Multitask Language Understanding"**, Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn Song and Jacob Steinhardt (arXiv:2009.03300, ICLR 2021), distributed under the **MIT** license.
+- Vendored file: `data/mmlu_redux.jsonl` — the 5,330 rows of the release whose `error_type` is `"ok"` (of 5,700 re-annotated questions), with the original columns kept verbatim plus three provenance columns. SHA-256: `618b47dc38f607abf2fde62efd17c1a1474c9c03730a77f58d8803fd232a8ffa`.
+- The upstream release carries no canary string; none is claimed here.
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Question text, options and the answer key remain the work of the upstream MMLU / MMLU-Redux authors, included here under CC BY 4.0 (with the MMLU questions themselves MIT) with the attribution above. The deterministic option shuffle is applied at build time; the vendored file is unmodified upstream content.

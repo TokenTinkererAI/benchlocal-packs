@@ -1,0 +1,73 @@
+NOTICE
+
+HumanEval+-164 includes material from two upstream projects: OpenAI's HumanEval
+benchmark and harness, and EvalPlus (the HumanEval+ dataset and evaluator).
+
+OpenAI HumanEval (openai/human-eval)
+------------------------------------
+
+Source: https://github.com/openai/human-eval
+License: MIT - Copyright (c) OpenAI (https://openai.com)
+
+The 164 problem prompts, canonical solutions and original test suites in this
+pack come from that dataset and are redistributed unmodified; a copy of the
+upstream license text is included at `data/LICENSE-human-eval`. The benchmark
+was introduced in "Evaluating Large Language Models Trained on Code"
+(Mark Chen et al., 2021; arXiv:2107.03374).
+
+The execution reliability guard in `harness/run_problem.py` is adapted from the
+reliability guard in openai/human-eval (MIT). The adaptation changes how the
+guard disables functions: the upstream guard assigns each disabled function
+unconditionally (for example `os.fork = None`), while this pack disables a
+function only if the running platform actually provides it (a `hasattr` check),
+so that Windows does not gain attributes that break imports such as `random`.
+
+EvalPlus (evalplus/evalplus, evalplus/humanevalplus_release)
+------------------------------------------------------------
+
+Sources: https://github.com/evalplus/evalplus
+         https://github.com/evalplus/humanevalplus_release
+License: Apache-2.0 for the repository and the released HumanEval+ dataset,
+with the `evalplus/eval/` subtree additionally licensed under MIT
+("The files under \"evalplus/eval/\" additionally complies with the MIT License
+for being built on OpenAI's HumanEval work"), Copyright (c) OpenAI.
+
+A copy of the upstream license text - including that MIT addendum - is included
+at `data/LICENSE-evalplus`; the MIT terms it refers to are the ones reproduced
+at `data/LICENSE-human-eval`.
+
+Redistributed from EvalPlus:
+
+- `data/source/HumanEvalPlus.jsonl.gz`, the HumanEval+ v0.1.10 release asset
+  (sha256 272720b90ac375502c8ed23cd791c2a93dfb22a911641a494da74a426c09f101).
+  It supplies each problem's `base_input`, `plus_input`, `atol`, `contract`,
+  prompt, canonical solution and original test source. Redistributed
+  unmodified.
+- The comparison semantics implemented in `harness/run_problem.py`, ported from
+  `evalplus/eval/__init__.py` (`unsafe_execute`), `evalplus/eval/utils.py`
+  (`swallow_io`, `reliability_guard`, `create_tempdir`), and
+  `evalplus/eval/_special_oracle.py` (`_poly`, the `find_zero` oracle) - the MIT
+  subtree.
+- The ground-truth generation rule in `scripts/build_expected.py`, ported from
+  `evalplus/gen/util/__init__.py` (`trusted_exec`), and the timeout defaults from
+  `evalplus/config.py`.
+- The input-validity predicate used to corroborate the excluded inputs in
+  HumanEval/32, reproduced from `evalplus/gen/type_mut.py` +
+  `evalplus/inputgen.py` (how the dataset's `contract` field is evaluated).
+
+Expected outputs shipped in `data/problems/*.json` are not upstream files: they
+were computed in this repository by executing the dataset's own canonical
+solutions over the dataset's own inputs, using EvalPlus's `trusted_exec`
+semantics.
+
+No endorsement
+--------------
+
+This is an independent third-party package. It is not affiliated with,
+sponsored by, endorsed by, or maintained by OpenAI or the EvalPlus authors.
+References to OpenAI, HumanEval, EvalPlus and HumanEval+ identify the source of
+the benchmark data and credit its authors. All product names and trademarks are
+the property of their respective owners.
+
+The Python execution performed by this pack is a convenience measure, not a
+security sandbox: see METHODOLOGY.md, section 3.

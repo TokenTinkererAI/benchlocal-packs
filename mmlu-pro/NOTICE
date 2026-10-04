@@ -1,0 +1,15 @@
+# NOTICE
+
+## MMLU-Pro data
+
+The question data in this pack is **MMLU-Pro**, from *"MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark"* by Yubo Wang, Xueguang Ma, Ge Zhang, Yuansheng Ni, Abhranil Chandra, Shiguang Guo, Weiming Ren, Aaran Arulraj, Xuan He, Ziyan Jiang, Tianle Li, Max Ku, Kai Wang, Alex Zhuang, Rongqi Fan, Xiang Yue and Wenhu Chen (arXiv:2406.01574, NeurIPS 2024).
+
+- Source: [TIGER-Lab/MMLU-Pro](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro), revision `b189ec765aa7ed75c8acfea42df31fdae71f97be` — `data/test-00000-of-00001.parquet`, 12,032 rows.
+- License: **MIT** — declared by the dataset card (`license: mit`); a copy of the license text is kept at `data/LICENSE-mmlu-pro`. (The upstream *code* repository [TIGER-AI-Lab/MMLU-Pro](https://github.com/TIGER-AI-Lab/MMLU-Pro) ships an Apache-2.0 LICENSE for its evaluation scripts; only the dataset file is vendored here.)
+- The MMLU-Pro authors compile their questions from the original MMLU dataset (Hendrycks et al., 2021 — arXiv:2009.03300, `cais/mmlu`, MIT), from STEM website problems, from [TheoremQA](https://huggingface.co/datasets/TIGER-Lab/TheoremQA) and from SciBench. This pack vendors only the compiled MMLU-Pro release, not those source datasets; the `src` field of each question records which sub-corpus it came from (`ori_mmlu-*` 6,810 / `stemez-*` 4,083 / `theoremQA-*` 598 / `scibench-*` 541).
+- Vendored file: `data/mmlu_pro.jsonl` — the 12,032 evaluation-split rows, upstream fields kept verbatim in upstream column order. SHA-256: `9dccf55b5718bffbf705bc19b8757274267e07d16af6a56c831cf5e8fb00069e`; source parquet SHA-256: `0e24a191921c2f453518a537a8b2117bd137e7714d4ef1565e9ba06c1ecb9ad8`.
+- The upstream release carries no canary string; none is claimed here.
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Question text, options, answer keys and categories remain the work of the upstream MMLU-Pro authors (and, for the MMLU-derived portion, the MMLU authors), included here under MIT with the attribution above. The deterministic option shuffle is applied at build time; the vendored file is unmodified upstream content.

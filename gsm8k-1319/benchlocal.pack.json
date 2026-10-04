@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "id": "gsm8k-1319",
+  "name": "GSM8K-1319",
+  "author": "TokenTinkerer",
+  "version": "1.0.1",
+  "description": "GSM8K: the 1319 grade-school math word problems of the test set, scored by exact numeric answer match against the number after the '#### ' marker. No code execution required.",
+  "entry": "./dist/benchlocal/index.js",
+  "requirements": {
+    "benchlocal": {
+      "minVersion": "0.2.0"
+    },
+    "hostFeatures": ["inferenceEndpoints"]
+  },
+  "samplingDefaults": {
+    "temperature": 0,
+    "max_tokens": 16384,
+    "request_timeout_seconds": 900
+  },
+  "theme": {
+    "accent": "#f59e0b"
+  },
+  "capabilities": {
+    "tools": false,
+    "multiTurn": false,
+    "streamingProgress": true,
+    "verification": false
+  }
+}
