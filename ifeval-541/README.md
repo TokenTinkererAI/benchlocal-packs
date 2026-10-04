@@ -55,14 +55,12 @@ Companion documents:
 
 ## Install
 
-Build the archive and install it through the app's third-party pack flow — see
+Register this folder as a **local source** in BenchLocal — see
 [INSTALL.md](INSTALL.md). The short version:
 
 ```sh
 npm ci                 # or: npm install
 npm run build          # dist/ (pack) + dist-cli/ (CLI)
-node scripts/pack-artifact.mjs
-# results/ifeval-541-1.0.1.tar.gz  -> install via http:// URL
 ```
 
 ## Score

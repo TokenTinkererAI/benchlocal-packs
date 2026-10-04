@@ -39,9 +39,8 @@ it, plus a special oracle for `find_zero`).
 
 ## Install
 
-See [INSTALL.md](INSTALL.md). The pack is installed through BenchLocal's
-third-party/archive flow; the artifact is
-`results/humaneval-plus-164-1.0.1.tar.gz`.
+See [INSTALL.md](INSTALL.md) — the pack is installed by registering this
+folder as a **local source** in the app.
 
 ## Using it from the CLI
 

@@ -1,10 +1,10 @@
 # Installing LiveCodeBench-v6
 
-This is a third-party BenchLocal bench pack. It is a plain Node module plus a Python grading harness and a vendored dataset — **no Docker and no verifier container**. At run time it needs an OpenAI-compatible inference endpoint (configured in the app) and a local Python 3.9+ interpreter.
+This is a custom BenchLocal bench pack — not part of the official registry. It is a plain Node module plus a Python grading harness and a vendored dataset — **no Docker and no verifier container**. At run time it needs an OpenAI-compatible inference endpoint (configured in the app) and a local Python 3.9+ interpreter.
 
-The dataset is ~4.2 GB on disk; the packaged archive is ≈3.0 GiB (the encrypted test blobs compress). Two install paths:
+The dataset is ~4.2 GB on disk. Install it by registering the folder as a local source:
 
-## Option A — local source (recommended while iterating)
+## Install (local source)
 
 The app can load the working tree directly. Add to `~/.benchlocal/config.toml`:
 
@@ -12,7 +12,7 @@ The app can load the working tree directly. Add to `~/.benchlocal/config.toml`:
 [benchpacks.livecodebench-v6]
 enabled = true
 source = "local"
-path = "C:/Users/<you>/livecodebench-v6"
+path = "<absolute path of this pack directory>"
 version = "1.0.1"
 ```
 
@@ -20,28 +20,6 @@ Notes:
 
 - The app reads `config.toml` at startup only — restart it after editing; a settings-save before that restart can overwrite a hand edit.
 - Local sources are used in place (no dependency hydration): keep `node_modules` + a fresh `npm run build` in the working tree, and keep the block's `version` in sync with `benchlocal.pack.json`.
-
-## Option B — packaged archive install
-
-```sh
-npm install
-npm run build
-node scripts/pack-artifact.mjs        # output: results/livecodebench-v6-1.0.1.tar.gz (~3.0 GiB)
-```
-
-Serve the archive and use the app's third-party pack installation (`file://` is not accepted, so serve over HTTP; the local server stays up for the duration of the download):
-
-```sh
-py -3 -m http.server 8091 --directory results
-```
-
-then install:
-
-```
-http://127.0.0.1:8091/livecodebench-v6-1.0.1.tar.gz
-```
-
-Installed packs land under `~/.benchlocal/benchpacks/livecodebench-v6/`. Expect the install step to spend a couple of minutes unpacking the dataset.
 
 ## Python requirement
 

@@ -30,10 +30,9 @@ No Docker, no Python, no verifier container.
 ```sh
 npm install
 npm run build                 # compiles the pack (dist/) and the CLI (dist-cli/)
-node scripts/pack-artifact.mjs
 ```
 
-That writes `results/aime-2025-1.0.1.tar.gz` — manifest, `dist/` and docs at the archive root, `node_modules` excluded (the host hydrates dependencies itself). Install it through BenchLocal's third-party pack flow; see [INSTALL.md](INSTALL.md).
+Register this folder as a **local source** in BenchLocal — it is not part of the official registry; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
 ## Usage
 

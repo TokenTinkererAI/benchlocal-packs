@@ -31,7 +31,7 @@ The canonical LiveCodeBench harness itself evaluates submissions by executing th
 
 ## Install
 
-BenchLocal installs third-party packs from a packaged archive through the app's pack installation flow. This repository produces that archive with `scripts/pack-artifact.mjs` (output: `results/livecodebench-v6-1.0.1.tar.gz`, ≈3.0 GiB because of the vendored dataset). See [INSTALL.md](INSTALL.md) for the exact steps; the local-source registration (working tree) remains the fastest iteration path.
+This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
 ## Usage
 

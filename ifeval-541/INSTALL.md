@@ -1,42 +1,35 @@
 # Installing IFEval-541
 
-This is a third-party BenchLocal bench pack: a pack repository that produces an
-installable archive. Unlike registry packs, it is installed through the app's
-package-install flow from a URL.
+This is a custom BenchLocal bench pack — a plain repository installed by registering it as a **local source** in the app (no archive, no URL install, no registry).
 
 The pack is a plain Node module plus a Python grading harness — **no Docker, no
 verifier container, no pip installs**. Runtime requirements: Python 3.9+ on the
 machine running BenchLocal, and an OpenAI-compatible inference endpoint.
 
-## 1. Build the archive
+## 1. Build
 
 ```sh
-npm ci                 # or: npm install
-npm run build          # compiles the pack (dist/) and the CLI (dist-cli/)
-node scripts/pack-artifact.mjs
+npm install
+npm run build          # compiles the pack + CLI
 ```
 
-Output: `results/ifeval-541-1.0.1.tar.gz` — manifest, `package.json`, docs,
-`dist/`, `harness/` and `data/` at the archive root; `node_modules` excluded
-(the host hydrates dependencies itself). The packer re-verifies the vendored
-dataset (541 records, pinned sha256) before writing the archive.
+## 2. Install (local source)
 
-## 2. Install in BenchLocal
+This pack is custom — it is not distributed through the official registry. Point BenchLocal at this folder directly by adding to `~/.benchlocal/config.toml`:
 
-BenchLocal's install flow accepts an `http://` or `https://` URL to a pack
-archive. `file://` URLs are not accepted, so serve the archive locally:
-
-```sh
-py -3 -m http.server 8123 --directory results
+```toml
+[benchpacks.ifeval-541]
+enabled = true
+source = "local"
+path = "<absolute path of this pack directory>"
+version = "1.0.1"
 ```
 
-Then use the app's third-party pack installation with:
+Notes:
 
-```
-http://127.0.0.1:8123/ifeval-541-1.0.1.tar.gz
-```
-
-Installed packs land under `~/.benchlocal/benchpacks/ifeval-541/`.
+- The app reads `config.toml` at startup only — restart it after editing. A settings-save before that restart can overwrite a hand edit; restart first, then confirm the block survived.
+- Local sources are used in place (no dependency hydration): keep `node_modules` + a fresh `npm run build` in the working tree, and keep the block's `version` in sync with `benchlocal.pack.json`.
+- This pack ships **without** a config entry — nothing is registered for you.
 
 ## 3. Python on the host
 
@@ -67,30 +60,6 @@ max_tokens)`, raise the budget for that run.
 Select the pack, pick a model, run. 541 scenarios, one chat completion each;
 results aggregate to points out of 100 (`totalScore`) with the strict/loose
 breakdown in the summary line.
-
-## Local development loop (optional)
-
-To iterate on the pack source without repacking, the app can load the working
-tree directly. Add to `~/.benchlocal/config.toml`:
-
-```toml
-[benchpacks.ifeval-541]
-enabled = true
-source = "local"
-path = "C:/Users/<you>/ifeval-541"
-version = "1.0.1"
-```
-
-Notes:
-
-- The app reads `config.toml` at startup only — restart it after editing. A
-  settings-save before that restart can overwrite a hand edit; restart first,
-  then confirm the block survived.
-- Local sources are used in place (no dependency hydration): keep
-  `node_modules` + a fresh `npm run build` in the working tree, and keep the
-  block's `version` in sync with `benchlocal.pack.json`.
-- When you're done iterating, the release artifact from step 1 remains the
-  canonical install.
 
 ## Troubleshooting
 

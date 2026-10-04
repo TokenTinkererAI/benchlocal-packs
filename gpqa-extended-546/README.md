@@ -31,7 +31,7 @@ The benchmark's entire check is string matching: extract the answer letter from 
 
 ## Install
 
-BenchLocal installs third-party packs from a packaged archive through the app's pack installation flow. This repository produces that archive with `scripts/pack-artifact.mjs` (output: `results/gpqa-extended-546-1.0.1.tar.gz`). See [INSTALL.md](INSTALL.md) for the exact steps supported by the current BenchLocal release.
+This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
 ## Usage
 

@@ -1,8 +1,7 @@
 # Installing HumanEval+-164 into BenchLocal
 
-This pack is a **verifier-less table pack**: it runs entirely on the host and
-needs **no Docker**. It ships one artifact,
-`results/humaneval-plus-164-1.0.1.tar.gz`, built by `scripts/pack-artifact.mjs`.
+This pack is a custom, **verifier-less table pack**: it runs entirely on the host and
+needs **no Docker**. It is installed by registering this folder as a **local source** in BenchLocal — no archive, no URL install, no registry.
 
 Requirements on the machine that runs the benchmark:
 
@@ -20,56 +19,9 @@ harness holds the expectation, which is inherent to grading those problems.
 
 ---
 
-## 1. What the artifact contains
+## 1. Install (local source)
 
-The tarball has every member at the archive **root** (not nested in a folder):
-
-```
-benchlocal.pack.json      pack manifest; `entry` points at ./dist/benchlocal/index.js
-package.json              name/version/deps (the host hydrates @benchlocal deps itself)
-README.md METHODOLOGY.md INSTALL.md LICENSE NOTICE
-dist/                     compiled pack: dist/benchlocal/index.js + dist/lib/*.js
-harness/run_problem.py    the Python grading harness, resolved at run time
-data/manifest.json        per-problem metadata + prompts
-data/canonical.json       reference solutions (self-test / mock fixtures)
-data/problems/*.json      164 graded records (inputs, expectations, timings)
-data/source/              vendored EvalPlus release asset + HF card
-data/LICENSE-human-eval   upstream MIT license text
-data/LICENSE-evalplus     upstream Apache-2.0 license text (with its MIT addendum)
-```
-
-`node_modules` is deliberately **not** shipped: the host hydrates the declared
-dependencies into the installed pack. `dist/` and `data/` must be present in the
-archive, which `scripts/pack-artifact.mjs` enforces (it refuses to pack a tree
-whose build outputs or data are missing, unless `--dev` is passed).
-
----
-
-## 2. Install paths
-
-### Path A — install from a URL (recommended)
-
-Install-from-URL accepts `http:`/`https:` only, so serve the tarball locally:
-
-```bash
-cd /path/to/benchlocal-packs/humaneval-plus-164
-npm run pack                                     # writes results/humaneval-plus-164-1.0.1.tar.gz
-python -m http.server 8765 --directory results   # serve the artifact
-```
-
-Then, in BenchLocal: **Settings → Bench Packs → Third-Party Bench Packs →
-Install from URL** and enter
-
-```
-http://127.0.0.1:8765/humaneval-plus-164-1.0.1.tar.gz
-```
-
-The installed copy lands under `~/.benchlocal/benchpacks/humaneval-plus-164/`
-(`versions/<version>-<hash>/` plus the `current.json` pointer). After installing,
-run **Settings → Bench Packs → (pack) → Verify** if the app offers it: the pack
-should report `ready`, and `listScenarios` should return 164 scenarios.
-
-### Path B — point the app at this working tree (development loop)
+### Local source via `config.toml`
 
 Installing from a folder is a `config.toml` edit — the host uses the working tree
 in place, so the tree needs `node_modules` and a built `dist/`:
@@ -96,14 +48,9 @@ Keep the block's `version` in sync with `benchlocal.pack.json` (or omit it). The
 app reads `config.toml` at startup only, and a settings-save before that restart
 can clobber a hand edit — restart first, then check the block survived.
 
-### Path C — registry
-
-Not used by this pack. It has no `repository` URL and is distributed as an
-archive only.
-
 ---
 
-## 3. Development and release loops
+## 2. Development and release loops
 
 ```bash
 # rebuild the dataset from the vendored source (needs Python; ~1 min)
@@ -137,11 +84,11 @@ Release checklist:
 3. `npm run selftest` — must print `SELFTEST PASS: 164/164 canonical`; then
    `node scripts/check-model-layer.mjs` — must print `MODEL LAYER PASS (8 fixtures)`;
 4. `npm run pack` (strict) and verify the member list and sha256 it prints;
-5. install through Path A and confirm the pack reports `ready` with 164 scenarios.
+5. reload BenchLocal and confirm the pack reports `ready` with 164 scenarios.
 
 ---
 
-## 4. Troubleshooting
+## 3. Troubleshooting
 
 | symptom | cause / fix |
 | --- | --- |
