@@ -34,6 +34,9 @@ The canonical EvalPlus harness evaluates submissions by executing them in a guar
 
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
+
+**Prebuilt archive:** [`mbpp-plus-378-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/mbpp-plus-378-v1.0.1/mbpp-plus-378-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+
 ## Usage
 
 ### In BenchLocal
