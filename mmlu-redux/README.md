@@ -33,6 +33,9 @@ The benchmark's entire check is string matching: extract the answer letter from 
 
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
+
+**Prebuilt archive:** [`mmlu-redux-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/mmlu-redux-v1.0.1/mmlu-redux-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+
 ## Usage
 
 ### In BenchLocal

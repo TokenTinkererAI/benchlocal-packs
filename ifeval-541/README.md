@@ -63,6 +63,9 @@ npm ci                 # or: npm install
 npm run build          # dist/ (pack) + dist-cli/ (CLI)
 ```
 
+
+**Prebuilt archive:** [`ifeval-541-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/ifeval-541-v1.0.1/ifeval-541-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+
 ## Score
 
 - Per scenario: `points: 1`, `score: 1` when **every** instruction of the prompt

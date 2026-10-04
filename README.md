@@ -55,6 +55,10 @@ To rebuild or re-run the local test suite inside any pack: `npm install && npm r
 
 `humaneval-164`, `livecodebench-v6`, `mbpp-plus-378` and `humaneval-plus-164` execute model-generated code in a local Python subprocess, with a restricted-builtins guard, per-test timeouts and process-tree kills. That guard is an anti-accident measure, **not a security sandbox**. Run them against models you trust, on a machine that can afford to misbehave. Each execution pack documents its exact harness and Windows/macOS adaptations in `METHODOLOGY.md`.
 
+## Prebuilt archives
+
+Prebuilt BenchLocal archives for every pack **except** `livecodebench-v6` (its ~3.1 GiB dataset exceeds GitHub’s 2 GiB release-asset limit) are attached to [Releases](https://github.com/TokenTinkererAI/benchlocal-packs/releases) — paste an archive’s URL into BenchLocal’s *Bench Pack URL* box to install without building.
+
 ## Repository notes
 
 - `node_modules/` and `results/` are intentionally not committed. Build outputs (`dist/`, `dist-cli/`) ARE committed, so cloned packs load directly in BenchLocal and the bundled mock servers work as-is.

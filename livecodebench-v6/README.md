@@ -33,6 +33,9 @@ The canonical LiveCodeBench harness itself evaluates submissions by executing th
 
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
+
+**No prebuilt archive:** the ~3.1 GiB dataset exceeds GitHub's 2 GiB release-asset limit — build from source as described above.
+
 ## Usage
 
 ### In BenchLocal

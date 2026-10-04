@@ -35,6 +35,9 @@ The execution reliability guard (adapted from openai/human-eval) is not a securi
 
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
+
+**Prebuilt archive:** [`humaneval-164-1.0.2.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/humaneval-164-v1.0.2/humaneval-164-1.0.2.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+
 ## Usage
 
 ### In BenchLocal

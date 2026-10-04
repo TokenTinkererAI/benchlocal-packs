@@ -34,6 +34,9 @@ npm run build                 # compiles the pack (dist/) and the CLI (dist-cli/
 
 Register this folder as a **local source** in BenchLocal — it is not part of the official registry; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
+
+**Prebuilt archive:** [`aime-2025-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/aime-2025-v1.0.1/aime-2025-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+
 ## Usage
 
 ### In BenchLocal

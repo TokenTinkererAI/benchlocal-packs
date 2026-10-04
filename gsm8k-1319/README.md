@@ -32,6 +32,9 @@ The benchmark's entire check is numeric string matching: extract the final numbe
 
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
+
+**Prebuilt archive:** [`gsm8k-1319-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/gsm8k-1319-v1.0.1/gsm8k-1319-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+
 ## Usage
 
 ### In BenchLocal

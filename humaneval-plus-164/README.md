@@ -42,6 +42,9 @@ it, plus a special oracle for `find_zero`).
 See [INSTALL.md](INSTALL.md) — the pack is installed by registering this
 folder as a **local source** in the app.
 
+
+**Prebuilt archive:** [`humaneval-plus-164-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/humaneval-plus-164-v1.0.1/humaneval-plus-164-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+
 ## Using it from the CLI
 
 ```bash
