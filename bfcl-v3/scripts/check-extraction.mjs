@@ -146,6 +146,98 @@ check(
   "fail"
 );
 
+// ---------------------------------------------------------------------------
+// 2b. SQL category
+//
+// Upstream's SQL golds are internally inconsistent with the schema they ship: keywords carry a
+// trailing object word the enum forbids ("CREATE TABLE" vs `CREATE`), list parameters store either
+// a bare string, a flat list or a nested list, numeric values arrive as numbers although the schema
+// types them as strings, and condition values are written without quotes. The checker accepts every
+// schema-legal rendering of the same answer; these cases pin that behaviour.
+// ---------------------------------------------------------------------------
+
+const sqlFn = fn(
+  "sql_execute",
+  {
+    sql_keyword: { type: "string", enum: ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE"] },
+    table_name: { type: "string" },
+    columns: { type: "array", items: { type: "string" } },
+    conditions: { type: "array", items: { type: "array", items: { type: "string" } } },
+    update_values: { type: "array", items: { type: "string" } },
+    insert_values: { type: "array", items: { type: "array", items: { type: "string" } } },
+  },
+  ["sql_keyword", "table_name"]
+);
+const sqlFunctions = [sqlFn];
+const selectGold = [
+  {
+    sql_execute: {
+      sql_keyword: ["SELECT"],
+      table_name: ["calculations"],
+      columns: [["result"]],
+      conditions: [["id = 5678"]],
+    },
+  },
+];
+
+check(
+  "sql: nested conditions match the flat gold",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "SELECT", table_name: "calculations", columns: ["result"], conditions: [["id = 5678"]] })], selectGold),
+  "pass"
+);
+check(
+  "sql: condition without the nesting matches",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "SELECT", table_name: "calculations", columns: ["result"], conditions: ["id = 5678"] })], selectGold),
+  "pass"
+);
+check(
+  "sql: different condition value fails",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "SELECT", table_name: "calculations", columns: ["result"], conditions: [["id = 9999"]] })], selectGold),
+  "fail"
+);
+check(
+  "sql: empty conditions where a filter is required fails",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "SELECT", table_name: "calculations", columns: ["result"], conditions: [] })], selectGold),
+  "fail"
+);
+check(
+  "sql: wrong table fails",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "SELECT", table_name: "students", columns: ["result"], conditions: [["id = 5678"]] })], selectGold),
+  "fail"
+);
+
+const createGold = [{ sql_execute: { sql_keyword: ["CREATE"], table_name: ["Students"], columns: [["StudentID", "FirstName"]] } }];
+check(
+  "sql: keyword with the object word is accepted",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "CREATE TABLE", table_name: "Students", columns: ["StudentID", "FirstName"] })], createGold),
+  "pass"
+);
+check(
+  "sql: bare keyword is accepted where the gold carries the object word",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "INSERT", table_name: "Students", columns: ["StudentID"], insert_values: [["1"]] })], [{ sql_execute: { sql_keyword: ["INSERT INTO"], table_name: ["Students"], columns: [["StudentID"]], insert_values: [[["1"]]] } }]),
+  "pass"
+);
+check(
+  "sql: different keyword fails",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "DELETE", table_name: "Students", columns: ["StudentID", "FirstName"] })], createGold),
+  "fail"
+);
+check(
+  "sql: quoted condition value matches the unquoted gold",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "UPDATE", table_name: "ExperimentData", columns: ["DataValue"], update_values: ["10.0"], conditions: [["ExperimentID = 'EX123'"]] })], [{ sql_execute: { sql_keyword: ["UPDATE"], table_name: ["ExperimentData"], columns: [["DataValue"]], update_values: [[10]], conditions: [["ExperimentID = EX123"]] } }]),
+  "pass"
+);
+check(
+  "sql: numeric string equals the numeric gold",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "UPDATE", table_name: "Elements", columns: ["AtomicMass"], update_values: ["18.01528"], conditions: [["AtomicNumber = 8"]] })], [{ sql_execute: { sql_keyword: ["UPDATE"], table_name: ["Elements"], columns: [["AtomicMass"]], update_values: [[18.01528]], conditions: [["AtomicNumber = 8"]] } }]),
+  "pass"
+);
+check(
+  "sql: a different number fails",
+  runAst("sql", sqlFunctions, [call("sql_execute", { sql_keyword: "UPDATE", table_name: "Elements", columns: ["AtomicMass"], update_values: ["20"], conditions: [["AtomicNumber = 8"]] })], [{ sql_execute: { sql_keyword: ["UPDATE"], table_name: ["Elements"], columns: [["AtomicMass"]], update_values: [[18.01528]], conditions: [["AtomicNumber = 8"]] } }]),
+  "fail"
+);
+
 const boolFn = fn("toggle", { enabled: { type: "boolean" } }, ["enabled"]);
 check(
   "simple: boolean value matches",

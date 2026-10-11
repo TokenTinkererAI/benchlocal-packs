@@ -4,7 +4,7 @@
   "id": "bfcl-v3",
   "name": "BFCL-v3",
   "author": "TokenTinkerer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Berkeley Function Calling Leaderboard v3, phase 1: the single-turn, non-live categories graded by AST match (simple, multiple, parallel, parallel_multiple, sql, irrelevance). Function documents are declared as tools; the emitted tool calls are compared against the dataset's ground-truth calls.",
   "entry": "./dist/benchlocal/index.js",
   "requirements": {

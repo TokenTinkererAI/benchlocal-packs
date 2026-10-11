@@ -34,7 +34,7 @@ The pack declares each scenario's function documents as OpenAI-compatible `tools
 - **No Python, no Docker.** Nothing is executed; grading compares the emitted calls with the stored ground truth.
 - **Node.js** only for the CLI runner and source builds.
 
-**Prebuilt archive:** [`bfcl-v3-1.0.0.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/bfcl-v3-v1.0.0/bfcl-v3-1.0.0.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+**Prebuilt archive:** [`bfcl-v3-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/bfcl-v3-v1.0.1/bfcl-v3-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
 
 ## Usage
 

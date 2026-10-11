@@ -28,7 +28,7 @@ Maintained by **TokenTinkerer**.
 | [`truthfulqa-817`](truthfulqa-817/) | TruthfulQA (MC1) | text, letter (A–M) | 817 | 1.0.0 |
 | [`aime-2026`](aime-2026/) | AIME 2026 (I + II) | text, integer (0–999) | 30 | 1.0.0 |
 | [`hmmt-feb-2026`](hmmt-feb-2026/) | HMMT February 2026 | text, normalized answer | 33 | 1.0.0 |
-| [`bfcl-v3`](bfcl-v3/) | Berkeley Function Calling Leaderboard v3 (phase 1, AST-match categories) | tool calls, call-vs-gold | 1,331 | 1.0.0 |
+| [`bfcl-v3`](bfcl-v3/) | Berkeley Function Calling Leaderboard v3 (phase 1, AST-match categories) | tool calls, call-vs-gold | 1,331 | 1.0.1 |
 | [`api-bank`](api-bank/) | API-Bank | tool calls, three levels | 498 | 1.0.0 |
 
 Every pack directory is a standalone pack repository: its own `benchlocal.pack.json` manifest, `lib/` runtime, `cli/` runner, `scripts/` (fixtures, extraction checks, mock server, packer), docs (`README.md`, `METHODOLOGY.md`, `INSTALL.md`, `NOTICE`), and vendored benchmark data with pinned source hashes.

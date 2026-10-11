@@ -1,6 +1,6 @@
 {
   "name": "bfcl-v3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "BenchLocal Bench Pack for BFCL v3 phase 1 - single-turn, non-live function-calling categories graded by AST match against the ground-truth calls.",
   "license": "MIT",
   "author": "TokenTinkerer",

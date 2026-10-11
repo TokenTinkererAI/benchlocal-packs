@@ -167,12 +167,93 @@ function fail(errorType: string, message: string): CheckResult {
 // Value-level checkers
 // ---------------------------------------------------------------------------
 
-export function stringChecker(param: string, modelOutput: string, possibleAnswer: unknown[]): CheckResult {
+/**
+ * SQL golds store the same value in several shapes (string / flat list / nested list) while the
+ * tool schema handed to the model declares one; accept any shape-legal rendering of the value.
+ */
+function shapeVariants(value: unknown): unknown[] {
+  const out: unknown[] = [value];
+  if (typeof value === "string") {
+    out.push([value], [[value]]);
+  } else if (Array.isArray(value)) {
+    if (value.length === 1) {
+      out.push(value[0]);
+    }
+    if (value.length === 1 && Array.isArray(value[0])) {
+      out.push(value[0]);
+    }
+    if (value.every((item) => typeof item === "string")) {
+      out.push([value]);
+      out.push(value.map((item) => [item]));
+    } else if (value.every((item) => Array.isArray(item))) {
+      out.push(value.flat());
+    }
+  }
+  return out;
+}
+
+/** Shape- and type-tolerant parameter comparison used for `sql` scenarios only. */
+function tolerantValuesEqual(model: unknown, candidate: unknown): boolean {
+  const left = shapeVariants(model);
+  const right = shapeVariants(candidate);
+  return left.some((a) => right.some((b) => tolerantDeepEquals(a, b)));
+}
+
+/** Leaf comparison on RAW values: exact Python equality, plus standardised-string equality and
+ * numeric equality across number/string renderings (`update_values` golds hold numbers while the
+ * declared schema types them as strings; standardising first would turn "10.0" into "100"). */
+function tolerantLeafEquals(a: unknown, b: unknown): boolean {
+  if (pyEquals(a, b)) {
+    return true;
+  }
+  if (typeof a === "string" && typeof b === "string") {
+    const sa = standardizeString(a);
+    const sb = standardizeString(b);
+    if (sa === sb) {
+      return true;
+    }
+    // Gold conditions drop the quotes around string values ("ID = EX123"); models quote them.
+    const stripQuotes = (s: string): string => s.replace(/["']/g, "");
+    if (stripQuotes(sa) === stripQuotes(sb)) {
+      return true;
+    }
+  }
+  const num = (v: unknown): number =>
+    typeof v === "number" ? v : typeof v === "string" && v.trim() !== "" ? Number(v) : NaN;
+  const na = num(a);
+  const nb = num(b);
+  return Number.isFinite(na) && Number.isFinite(nb) && na === nb;
+}
+
+function tolerantDeepEquals(a: unknown, b: unknown): boolean {
+  if (tolerantLeafEquals(a, b)) {
+    return true;
+  }
+  if (Array.isArray(a) && Array.isArray(b)) {
+    return a.length === b.length && a.every((item, index) => tolerantDeepEquals(item, b[index]));
+  }
+  return false;
+}
+
+/**
+ * `sql_keyword` golds carry the object word the schema's enum forbids ("CREATE TABLE" where the
+ * enum says `CREATE`) — accept when the leading keyword agrees.
+ */
+function leadingKeyword(value: string): string {
+  const first = value.trim().split(/\s+/)[0] ?? "";
+  return standardizeString(first);
+}
+
+export function stringChecker(param: string, modelOutput: string, possibleAnswer: unknown[], tolerant = false): CheckResult {
   const standardizedModel = standardizeString(modelOutput);
   const standardizedPossible = possibleAnswer
     .filter((answer): answer is string => typeof answer === "string")
     .map(standardizeString);
-  if (!standardizedPossible.includes(standardizedModel)) {
+  const rawCandidates = possibleAnswer.filter((answer): answer is string => typeof answer === "string");
+  const accepted =
+    standardizedPossible.includes(standardizedModel) ||
+    (tolerant && rawCandidates.some((candidate) => leadingKeyword(candidate) === leadingKeyword(modelOutput)));
+  if (!accepted) {
     return fail(
       "value_error:string",
       `Invalid value for parameter '${param}': ${JSON.stringify(modelOutput)}. Expected one of ${JSON.stringify(possibleAnswer)}. Case insensitive.`
@@ -181,14 +262,17 @@ export function stringChecker(param: string, modelOutput: string, possibleAnswer
   return ok();
 }
 
-export function listChecker(param: string, modelOutput: unknown[], possibleAnswer: unknown[]): CheckResult {
+export function listChecker(param: string, modelOutput: unknown[], possibleAnswer: unknown[], tolerant = false): CheckResult {
   const standardizedModel = [...modelOutput].map((item) => (typeof item === "string" ? standardizeString(item) : item));
   const standardizedPossible = possibleAnswer.map((answer) =>
     Array.isArray(answer)
       ? answer.map((item) => (typeof item === "string" ? standardizeString(item) : item))
       : answer
   );
-  if (!standardizedPossible.some((candidate) => pyEquals(candidate, standardizedModel))) {
+  const accepted = tolerant
+    ? standardizedPossible.some((candidate) => tolerantValuesEqual(modelOutput, candidate))
+    : standardizedPossible.some((candidate) => pyEquals(candidate, standardizedModel));
+  if (!accepted) {
     return fail(
       "value_error:list/tuple",
       `Invalid value for parameter '${param}': ${JSON.stringify(modelOutput)}. Expected one of ${JSON.stringify(possibleAnswer)}.`
@@ -405,7 +489,8 @@ export type BenchFunctionOrList = BenchFunctionLike | BenchFunctionLike[];
 export function simpleFunctionChecker(
   funcDescription: BenchFunctionLike | undefined,
   modelOutput: Record<string, Record<string, unknown>>,
-  possibleAnswer: GoldCallLike
+  possibleAnswer: GoldCallLike,
+  tolerant = false
 ): CheckResult {
   if (!funcDescription) {
     return fail("simple_function_checker:missing_description", "No function description for the expected call.");
@@ -475,14 +560,14 @@ export function simpleFunctionChecker(
         continue;
       }
       if (expectedTypeConverted === "str") {
-        const result = stringChecker(param, value as string, possibleAnswerParams[param]);
+        const result = stringChecker(param, value as string, possibleAnswerParams[param], tolerant);
         if (!result.valid) {
           return result;
         }
         continue;
       }
       if (expectedTypeConverted === "list") {
-        const result = listChecker(param, value as unknown[], possibleAnswerParams[param]);
+        const result = listChecker(param, value as unknown[], possibleAnswerParams[param], tolerant);
         if (!result.valid) {
           return result;
         }
@@ -490,7 +575,10 @@ export function simpleFunctionChecker(
       }
     }
 
-    if (!pyContains(possibleAnswerParams[param], value)) {
+    const contains = tolerant
+      ? possibleAnswerParams[param].some((candidate) => tolerantValuesEqual(value, candidate))
+      : pyContains(possibleAnswerParams[param], value);
+    if (!contains) {
       return fail(
         "value_error:others",
         `Invalid value for parameter '${param}': ${JSON.stringify(value)}. Expected one of ${JSON.stringify(
@@ -596,7 +684,9 @@ export function astChecker(
   if (modelOutput.length !== 1) {
     return fail("simple_function_checker:wrong_count", `Wrong number of functions: emitted ${modelOutput.length}, expected 1.`);
   }
-  return simpleFunctionChecker(funcDescriptions[0], modelOutput[0], possibleAnswers[0]);
+  // `sql` golds are shape-inconsistent with the schema handed to the model (see tolerantValuesEqual).
+  const tolerant = testCategory.includes("sql");
+  return simpleFunctionChecker(funcDescriptions[0], modelOutput[0], possibleAnswers[0], tolerant);
 }
 
 /**
