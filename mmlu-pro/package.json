@@ -1,6 +1,6 @@
 {
   "name": "mmlu-pro",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BenchLocal Bench Pack for MMLU-Pro (12,032 ten-option reasoning questions across 14 disciplines) - answer-letter match scoring, no execution needed.",
   "license": "MIT",
   "author": "TokenTinkerer",

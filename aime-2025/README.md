@@ -13,7 +13,7 @@ Zero-shot, single-sample competition-math evaluation — one chat completion per
 | Task | Solve the problem, end with a final line `Answer: <integer>` |
 | Scoring | Exact match, 1 point per problem, aggregate = rounded percentage out of 100 |
 | Category | `AIME 2025 (accuracy)` |
-| Sampling defaults | temperature 0, max_tokens 16384, request_timeout_seconds 900 |
+| Sampling defaults | temperature 0, max_tokens 65536, request_timeout_seconds 3600 |
 
 Problem text is vendored byte-for-byte from the MathArena `aime_2025` question set used for the MathArena leaderboard (LaTeX source; the 5 figure-bearing problems carry their TikZ/Asymptote source, as the upstream leaderboard does). All 30 gold answers were cross-checked against two further public mirrors — `opencompass/AIME2025` and `yentinglin/aime_2025` — and are identical in all three. See [NOTICE](NOTICE) and [METHODOLOGY.md](METHODOLOGY.md).
 
@@ -35,7 +35,7 @@ npm run build                 # compiles the pack (dist/) and the CLI (dist-cli/
 Register this folder as a **local source** in BenchLocal — it is not part of the official registry; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
 
-**Prebuilt archive:** [`aime-2025-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/aime-2025-v1.0.1/aime-2025-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+**Prebuilt archive:** [`aime-2025-1.0.2.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/aime-2025-v1.0.2/aime-2025-1.0.2.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
 
 ## Usage
 

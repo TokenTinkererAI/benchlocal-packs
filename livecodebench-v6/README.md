@@ -45,7 +45,7 @@ This repository is a custom BenchLocal bench pack — it needs no Docker and is 
 3. Run the pack. It exposes 1055 scenarios — one per problem. For each, the pack requests one chat completion, extracts the code, and grades it locally against the full test set.
 4. Read the results: pass/fail per problem with failure detail, aggregated as pass@1 with a per-platform breakdown.
 
-Default sampling is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 16384, request timeout 900 s. Per-problem grading caps: 6 s per test case (watchdog), 300 s wall-clock per problem; both configurable in the CLI.
+Default sampling is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 65536, request timeout 3600 s. Per-problem grading caps: 6 s per test case (watchdog), 300 s wall-clock per problem; both configurable in the CLI.
 
 **Plan for the runtime.** A full 1055-problem run is a multi-hour job even for fast models (each problem = one generation + a full test-set grading; some problems carry very large test sets). Start with `--ids`/`--limit` subsets.
 

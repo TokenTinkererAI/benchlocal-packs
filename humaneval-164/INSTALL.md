@@ -23,7 +23,7 @@ npm run build:benchlocal         # compiles benchlocal/ + lib/ to dist/
    enabled = true
    source = "local"
    path = "<absolute path of this pack directory>"
-   version = "1.0.2"
+   version = "1.0.3"
    ```
 
 3. Make sure the folder is built and has dependencies: `npm install`, then `npm run build:benchlocal`.

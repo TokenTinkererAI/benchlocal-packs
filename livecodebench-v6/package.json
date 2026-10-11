@@ -1,6 +1,6 @@
 {
   "name": "livecodebench-v6",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BenchLocal Bench Pack for LiveCodeBench v6 (1055 code-generation problems) - local Python execution against full public+hidden test sets, no verifier container.",
   "license": "MIT",
   "author": "TokenTinkerer",

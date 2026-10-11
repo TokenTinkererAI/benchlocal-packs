@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createChatCompletion = createChatCompletion;
-const DEFAULT_TIMEOUT_MS = 900_000;
+const DEFAULT_TIMEOUT_MS = 3_600_000;
 function joinUrl(baseUrl, urlPath) {
     const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
     return new URL(urlPath.replace(/^\//, ""), base).toString();

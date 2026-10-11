@@ -1,6 +1,6 @@
 {
   "name": "ifeval-541",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BenchLocal Bench Pack for IFEval (541 instruction-following prompts) - graded by the canonical programmatic constraint checks (strict + loose), no LLM judge.",
   "license": "MIT",
   "author": "TokenTinkerer",

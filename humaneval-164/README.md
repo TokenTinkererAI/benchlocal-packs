@@ -36,7 +36,7 @@ The execution reliability guard (adapted from openai/human-eval) is not a securi
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
 
-**Prebuilt archive:** [`humaneval-164-1.0.2.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/humaneval-164-v1.0.2/humaneval-164-1.0.2.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+**Prebuilt archive:** [`humaneval-164-1.0.3.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/humaneval-164-v1.0.3/humaneval-164-1.0.3.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
 
 ## Usage
 
@@ -47,7 +47,7 @@ This repository is a custom BenchLocal bench pack — it needs no Docker and is 
 3. Run the pack. It exposes 164 scenarios — one per problem. For each scenario the pack requests one chat completion, extracts the code, executes it with the resolved Python interpreter, and records the result.
 4. Read the results: pass/fail per problem with a failure excerpt, aggregated as pass@1 (see Scoring below).
 
-Default sampling for the pack is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 16384, request timeout 900 s. Model requests use `stream: true` with client-side SSE accumulation — a plain JSON response is still accepted as a fallback for servers that buffer the stream (see [METHODOLOGY.md](METHODOLOGY.md)). Heavy reasoners can still exhaust the budget — raise `max_tokens` in the run tab when results say `empty completion` or `completion truncated`.
+Default sampling for the pack is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 65536, request timeout 3600 s. Model requests use `stream: true` with client-side SSE accumulation — a plain JSON response is still accepted as a fallback for servers that buffer the stream (see [METHODOLOGY.md](METHODOLOGY.md)). Heavy reasoners can still exhaust the budget — raise `max_tokens` in the run tab when results say `empty completion` or `completion truncated`.
 
 ### CLI runner
 

@@ -43,7 +43,7 @@ See [INSTALL.md](INSTALL.md) — the pack is installed by registering this
 folder as a **local source** in the app.
 
 
-**Prebuilt archive:** [`humaneval-plus-164-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/humaneval-plus-164-v1.0.1/humaneval-plus-164-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+**Prebuilt archive:** [`humaneval-plus-164-1.0.2.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/humaneval-plus-164-v1.0.2/humaneval-plus-164-1.0.2.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
 
 ## Using it from the CLI
 
@@ -60,7 +60,7 @@ Useful flags: `--limit N`, `--ids 0,32,139`, `--max-tokens N`,
 The interpreter can also be pinned with `HUMANEVALPLUS164_PYTHON`.
 
 Default sampling for the pack is declared in `benchlocal.pack.json`:
-`temperature` 0, `max_tokens` 16384, request timeout 900 s. Model requests use
+`temperature` 0, `max_tokens` 65536, request timeout 3600 s. Model requests use
 `stream: true` with client-side SSE accumulation — a plain JSON response is
 still accepted as a fallback for servers that buffer the stream (see
 [METHODOLOGY.md](METHODOLOGY.md)). Heavy reasoners can still exhaust the budget:

@@ -23,7 +23,7 @@ npm run build          # compiles the pack + CLI
    enabled = true
    source = "local"
    path = "<absolute path of this pack directory>"
-   version = "1.0.1"
+   version = "1.0.2"
    ```
 
 3. Make sure the folder has dependencies and a build: `npm install`, then `npm run build`.

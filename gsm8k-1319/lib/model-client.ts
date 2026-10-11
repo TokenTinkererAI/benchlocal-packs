@@ -14,7 +14,7 @@
  */
 import type { ChatMessage, ModelReply, ModelSettings } from "./types";
 
-const DEFAULT_TIMEOUT_MS = 900_000;
+const DEFAULT_TIMEOUT_MS = 3_600_000;
 
 function joinUrl(baseUrl: string, urlPath: string): string {
   const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;

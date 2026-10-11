@@ -76,8 +76,8 @@ Options:
   --ids a,b,c            Only run specific problems (0 or AIME/0 forms)
   --temperature F        Sampling temperature (default 0)
   --top-p F              Nucleus sampling (omit for endpoint default)
-  --max-tokens N         Completion cap (default 16384)
-  --timeout-ms N         Per-request model timeout (default 300000)
+  --max-tokens N         Completion cap (default 65536)
+  --timeout-ms N         Per-request model timeout (default 3600000)
   --out PATH             Write a JSON results file
   --help                 Show this help`);
 }
@@ -114,8 +114,8 @@ async function main(): Promise<void> {
     model: args.model,
     temperature: args.temperature ?? 0,
     topP: args.topP,
-    maxTokens: args.maxTokens ?? 16384,
-    timeoutMs: args.timeoutMs ?? 300_000
+    maxTokens: args.maxTokens ?? 65536,
+    timeoutMs: args.timeoutMs ?? 3_600_000
   };
 
   const startedAt = new Date();

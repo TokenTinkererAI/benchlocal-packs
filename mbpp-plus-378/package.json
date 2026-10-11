@@ -1,6 +1,6 @@
 {
   "name": "mbpp-plus-378",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BenchLocal Bench Pack for EvalPlus MBPP+ (378 Python problems) - local execution against the expanded base+plus input suites with EvalPlus's own comparison semantics, no verifier container.",
   "license": "MIT",
   "author": "TokenTinkerer",

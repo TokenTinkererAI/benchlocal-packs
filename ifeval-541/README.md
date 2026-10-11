@@ -15,7 +15,7 @@ Results aggregate to **strict** instruction-level accuracy in points out of 100,
 with the **loose** upper bound reported alongside.
 
 Default sampling for the pack is declared in `benchlocal.pack.json`:
-`temperature` 0, `max_tokens` 16384, request timeout 900 s. Model replies are
+`temperature` 0, `max_tokens` 65536, request timeout 3600 s. Model replies are
 requested with `stream: true` and the SSE response is accumulated client-side,
 so long generations are not cut off by Node's ~300 s non-streaming
 response-headers wall — see the Transport section of
@@ -64,7 +64,7 @@ npm run build          # dist/ (pack) + dist-cli/ (CLI)
 ```
 
 
-**Prebuilt archive:** [`ifeval-541-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/ifeval-541-v1.0.1/ifeval-541-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+**Prebuilt archive:** [`ifeval-541-1.0.2.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/ifeval-541-v1.0.2/ifeval-541-1.0.2.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
 
 ## Score
 

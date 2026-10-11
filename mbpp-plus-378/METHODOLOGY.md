@@ -164,7 +164,7 @@ returns numpy arrays still compares correctly through `==` and the mirrored
 | Per input | `max(min_time_limit, 4.0 x ref_time)` = **4 s** (default) | EvalPlus's `min_time_limit` / `gt_time_limit_factor`; ref times are the build-time canonical measurements (or the run-time measurement for the two runtime-mode problems), so the 4 s floor binds on every input except Mbpp/599's 4.54 s. Enforced by a watchdog thread + `PyThreadState_SetAsyncExc` (Windows has no `SIGALRM`). |
 | Per phase (base and plus separately) | `min(60 s, sum(per-input limits)) + 2 s` | Mirrors `untrusted_check`'s outer join timeout (`EVALPLUS_TIMEOUT_PER_TASK`). Exceeding it ends the phase with status `timeout`. |
 | Per problem (outer) | **300 s** wall clock (CLI `--exec-timeout-ms`) | Enforced by the executor; on timeout the whole process tree is killed (`taskkill /T /F` on Windows), then the run records `execution exceeded the ... wall-clock cap`. The only backstop for a hang inside a single C call, where neither signals nor async exceptions are delivered. |
-| Model request | **900 s** | `samplingDefaults.request_timeout_seconds`; requests are streamed (see Transport), so this timer is the binding limit. |
+| Model request | **3600 s** | `samplingDefaults.request_timeout_seconds`; requests are streamed (see Transport), so this timer is the binding limit. |
 
 The Windows watchdog is covered by the shipped self-test: `while True: pass` inside a
 submission is interrupted after the per-input limit, and a 101-input phase stops
@@ -179,7 +179,7 @@ OpenAI-compatible servers do not send headers until generation finishes — a
 generation needing more than ~5 minutes (long hidden reasoning, or a long reply
 before the code block) would otherwise fail with `fetch failed` regardless of
 the configured `request_timeout_seconds`. With streaming, headers arrive
-immediately and the pack's own timeout (default 900 s) plus the caller's abort
+immediately and the pack's own timeout (default 3600 s) plus the caller's abort
 signal are the only limits. A non-SSE `application/json` response is still
 accepted as a fallback for servers or proxies that buffer the stream; the mock
 server exercises both behaviours (`--json-only` switches it to the

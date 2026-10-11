@@ -26,7 +26,7 @@ export type ExecuteOptions = {
   code: string;
   /** per-test watchdog timeout passed to the harness (default 6000 ms) */
   perTestTimeoutMs?: number;
-  /** wall-clock cap enforced here; the harness self-limits too (default 300000 ms) */
+  /** wall-clock cap enforced here; the harness self-limits too (default 3600000 ms) */
   execTimeoutMs?: number;
 };
 
@@ -65,7 +65,7 @@ export function parseHarnessStdout(stdout: string): HarnessResult | null {
 
 export function executeCode(options: ExecuteOptions): Promise<ExecutionOutcome> {
   const perTestTimeoutMs = options.perTestTimeoutMs ?? 6000;
-  const execTimeoutMs = options.execTimeoutMs ?? 300_000;
+  const execTimeoutMs = options.execTimeoutMs ?? 3_600_000;
 
   let tempDir: string;
   try {

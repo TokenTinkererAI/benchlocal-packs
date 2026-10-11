@@ -30,7 +30,7 @@ export type ExecuteOptions = {
   gtTimeLimitFactor?: number;
   /** evalplus EVALPLUS_TIMEOUT_PER_TASK equivalent (default 60 s per phase). */
   timeoutPerTaskS?: number;
-  /** wall-clock cap enforced here; the harness self-limits too (default 300000 ms) */
+  /** wall-clock cap enforced here; the harness self-limits too (default 3600000 ms) */
   execTimeoutMs?: number;
 };
 
@@ -68,7 +68,7 @@ export function parseHarnessStdout(stdout: string): HarnessResult | null {
 }
 
 export function executeCode(options: ExecuteOptions): Promise<ExecutionOutcome> {
-  const execTimeoutMs = options.execTimeoutMs ?? 300_000;
+  const execTimeoutMs = options.execTimeoutMs ?? 3_600_000;
 
   let tempDir: string;
   try {

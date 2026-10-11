@@ -71,8 +71,8 @@ results for some model families used few-shot templates; this pack does not
 | setting | value |
 | --- | --- |
 | temperature | 0 |
-| max_tokens | 16384 |
-| request timeout | 900 s |
+| max_tokens | 65536 |
+| request timeout | 3600 s |
 | samples per prompt | 1 (single sample; no pass@k) |
 
 These are the pack's `samplingDefaults`; the BenchLocal host or CLI may override
@@ -89,7 +89,7 @@ response-headers timeout that pack code cannot raise, and non-streaming
 OpenAI-compatible servers do not send headers until generation finishes —
 generations needing more than ~5 minutes would otherwise fail with `fetch
 failed` regardless of the configured `request_timeout_seconds`. With streaming,
-headers arrive immediately and the pack's own timeout (default 900 s) plus the
+headers arrive immediately and the pack's own timeout (default 3600 s) plus the
 caller's abort signal are the only limits. A non-SSE `application/json` response
 is still accepted as a fallback for servers or proxies that buffer the stream;
 the mock server exercises both behaviours (`--json-only` switches it to the

@@ -58,7 +58,7 @@ function parseHarnessStdout(stdout) {
 }
 function executeCode(options) {
     const perTestTimeoutMs = options.perTestTimeoutMs ?? 6000;
-    const execTimeoutMs = options.execTimeoutMs ?? 300_000;
+    const execTimeoutMs = options.execTimeoutMs ?? 3_600_000;
     let tempDir;
     try {
         tempDir = (0, node_fs_1.mkdtempSync)(node_path_1.default.join((0, node_os_1.tmpdir)(), "lcbv6-"));

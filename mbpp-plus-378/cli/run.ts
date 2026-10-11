@@ -79,9 +79,9 @@ Options:
   --ids Mbpp/2,Mbpp/3        Only run specific task ids (e.g. Mbpp/2)
   --temperature F            Sampling temperature (default 0)
   --top-p F                  Nucleus sampling (omit for endpoint default)
-  --max-tokens N             Completion cap (default 16384)
-  --timeout-ms N             Per-request model timeout (default 900000)
-  --exec-timeout-ms N        Wall-clock cap per problem run (default 300000)
+  --max-tokens N             Completion cap (default 65536)
+  --timeout-ms N             Per-request model timeout (default 3600000)
+  --exec-timeout-ms N        Wall-clock cap per problem run (default 3600000)
   --out PATH                 Write a JSON results file
   --help                     Show this help`);
 }
@@ -123,8 +123,8 @@ async function main(): Promise<void> {
     model: args.model,
     temperature: args.temperature ?? 0,
     topP: args.topP,
-    maxTokens: args.maxTokens ?? 16384,
-    timeoutMs: args.timeoutMs ?? 900_000
+    maxTokens: args.maxTokens ?? 65536,
+    timeoutMs: args.timeoutMs ?? 3_600_000
   };
 
   const startedAt = new Date();
@@ -145,7 +145,7 @@ async function main(): Promise<void> {
       async () => {},
       {
         python,
-        execTimeoutMs: args.execTimeoutMs ?? 300_000
+        execTimeoutMs: args.execTimeoutMs ?? 3_600_000
       }
     );
     const elapsed = Date.now() - startMs;
@@ -184,7 +184,7 @@ async function main(): Promise<void> {
             temperature: settings.temperature ?? null,
             topP: settings.topP ?? null,
             maxTokens: settings.maxTokens ?? null,
-            execTimeoutMs: args.execTimeoutMs ?? 300_000
+            execTimeoutMs: args.execTimeoutMs ?? 3_600_000
           },
           passed,
           total: problems.length,

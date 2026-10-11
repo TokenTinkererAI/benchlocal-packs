@@ -34,7 +34,7 @@ The benchmark's entire check is string matching: extract the answer letter from 
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
 
-**Prebuilt archive:** [`mmlu-pro-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/mmlu-pro-v1.0.1/mmlu-pro-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+**Prebuilt archive:** [`mmlu-pro-1.0.2.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/mmlu-pro-v1.0.2/mmlu-pro-1.0.2.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
 
 ## Usage
 
@@ -45,7 +45,7 @@ This repository is a custom BenchLocal bench pack — it needs no Docker and is 
 3. Run the pack. It exposes 12,032 scenarios — one per question. For each scenario the pack requests one chat completion, extracts the final answer letter, and records the result.
 4. Read the results: correct / wrong / unparseable per question with an excerpt, aggregated as accuracy and broken down by discipline.
 
-Default sampling for the pack is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 16384, request timeout 900 s. Model replies are requested with `stream: true` and the SSE response is accumulated client-side, so long generations are not cut off by Node's ~300 s non-streaming response-headers wall — see the Transport section of [METHODOLOGY.md](METHODOLOGY.md). Graders may reason before the final line, so the budget matters — raise `max_tokens` in the run tab when results say the response was truncated.
+Default sampling for the pack is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 65536, request timeout 3600 s. Model replies are requested with `stream: true` and the SSE response is accumulated client-side, so long generations are not cut off by Node's ~300 s non-streaming response-headers wall — see the Transport section of [METHODOLOGY.md](METHODOLOGY.md). Graders may reason before the final line, so the budget matters — raise `max_tokens` in the run tab when results say the response was truncated.
 
 ### CLI runner
 

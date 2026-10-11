@@ -32,7 +32,7 @@ in place, so the tree needs `node_modules` and a built `dist/`:
 enabled = true
 source = "local"
 path = "<absolute path of this pack directory>"
-version = "1.0.1"
+version = "1.0.2"
 ```
 
 Then:

@@ -35,7 +35,7 @@ The canonical EvalPlus harness evaluates submissions by executing them in a guar
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
 
-**Prebuilt archive:** [`mbpp-plus-378-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/mbpp-plus-378-v1.0.1/mbpp-plus-378-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+**Prebuilt archive:** [`mbpp-plus-378-1.0.2.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/mbpp-plus-378-v1.0.2/mbpp-plus-378-1.0.2.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
 
 ## Usage
 
@@ -46,7 +46,7 @@ This repository is a custom BenchLocal bench pack — it needs no Docker and is 
 3. Run the pack. It exposes 378 scenarios — one per problem. For each, the pack requests one chat completion at temperature 0, extracts the code block, and grades it locally against the base + plus suites.
 4. Read the results: pass/fail per problem with the first failing input, aggregated as pass@1 in points out of 100.
 
-Default sampling is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 16384, request timeout 900 s (model requests are streamed — see [METHODOLOGY.md](METHODOLOGY.md) §Transport). Per-problem grading caps: 4 s per input (watchdog, EvalPlus's `min_time_limit`), ~60 s per suite, **300 s wall clock per problem**; the CLI can lower the outer cap with `--exec-timeout-ms`.
+Default sampling is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 65536, request timeout 3600 s (model requests are streamed — see [METHODOLOGY.md](METHODOLOGY.md) §Transport). Per-problem grading caps: 4 s per input (watchdog, EvalPlus's `min_time_limit`), ~60 s per suite, **300 s wall clock per problem**; the CLI can lower the outer cap with `--exec-timeout-ms`.
 
 ### CLI runner
 

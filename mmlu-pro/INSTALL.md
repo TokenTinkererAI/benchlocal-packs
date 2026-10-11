@@ -20,7 +20,7 @@ This pack is custom — it is not distributed through the official registry. Poi
 enabled = true
 source = "local"
 path = "<absolute path of this pack directory>"
-version = "1.0.1"
+version = "1.0.2"
 ```
 
 Notes:
@@ -33,7 +33,7 @@ Notes:
 
 Any OpenAI-compatible chat endpoint works — a local server (llama.cpp, LM Studio, ollama) or a hosted API. Configure it in the app (base URL + model name; an API key if required).
 
-The run is one chat completion per question, 12,032 of them, with `temperature` 0, `max_tokens` 16384 and a 900 s request timeout by default. MMLU-Pro questions require chain-of-thought reasoning — models that think before answering spend tokens on the reasoning; if results say `(response truncated - raise max_tokens)`, raise the budget for that run.
+The run is one chat completion per question, 12,032 of them, with `temperature` 0, `max_tokens` 65536 and a 3600 s request timeout by default. MMLU-Pro questions require chain-of-thought reasoning — models that think before answering spend tokens on the reasoning; if results say `(response truncated - raise max_tokens)`, raise the budget for that run.
 
 ## 4. Run
 

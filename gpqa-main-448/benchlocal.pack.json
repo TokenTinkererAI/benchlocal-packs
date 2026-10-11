@@ -4,7 +4,7 @@
   "id": "gpqa-main-448",
   "name": "GPQA-Main-448",
   "author": "TokenTinkerer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "GPQA Main: 448 graduate-level, google-proof science questions (physics / chemistry / biology), multiple-choice, scored by exact answer match against the published key.",
   "entry": "./dist/benchlocal/index.js",
   "requirements": {
@@ -17,8 +17,8 @@
   },
   "samplingDefaults": {
     "temperature": 0,
-    "max_tokens": 16384,
-    "request_timeout_seconds": 900
+    "max_tokens": 65536,
+    "request_timeout_seconds": 3600
   },
   "theme": {
     "accent": "#6366f1"

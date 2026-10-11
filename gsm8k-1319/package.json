@@ -1,6 +1,6 @@
 {
   "name": "gsm8k-1319",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BenchLocal Bench Pack for GSM8K (1319 grade-school math word problems) - exact numeric answer-match scoring, no execution needed.",
   "license": "MIT",
   "author": "TokenTinkerer",

@@ -1,6 +1,6 @@
 {
   "name": "math-500",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BenchLocal Bench Pack for MATH-500 (500 competition-math problems from the MATH test set) - boxed-answer extraction with textual LaTeX normalization, no code execution needed.",
   "license": "MIT",
   "author": "TokenTinkerer",

@@ -1,6 +1,6 @@
 {
   "name": "gpqa-diamond-198",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BenchLocal Bench Pack for GPQA Diamond (198 graduate-level science questions) - answer-match scoring, no execution needed.",
   "license": "MIT",
   "author": "TokenTinkerer",

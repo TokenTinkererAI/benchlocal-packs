@@ -1,6 +1,6 @@
 {
   "name": "humaneval-plus-164",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BenchLocal Bench Pack for EvalPlus HumanEval+ (164 problems graded against the expanded base+plus test suites) with local Python execution - no Docker required.",
   "license": "MIT",
   "author": "TokenTinkerer",

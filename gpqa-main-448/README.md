@@ -34,7 +34,7 @@ The benchmark's entire check is string matching: extract the answer letter from 
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
 
-**Prebuilt archive:** [`gpqa-main-448-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/gpqa-main-448-v1.0.1/gpqa-main-448-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+**Prebuilt archive:** [`gpqa-main-448-1.0.2.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/gpqa-main-448-v1.0.2/gpqa-main-448-1.0.2.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
 
 ## Usage
 
@@ -45,7 +45,7 @@ This repository is a custom BenchLocal bench pack — it needs no Docker and is 
 3. Run the pack. It exposes 448 scenarios — one per question. For each scenario the pack requests one chat completion, extracts the final answer letter, and records the result.
 4. Read the results: correct / wrong / unparseable per question with an excerpt, aggregated as accuracy (see Scoring below).
 
-Default sampling for the pack is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 16384, `request_timeout_seconds` 900 (the request transport streams; see METHODOLOGY). Graders answer with chain-of-thought before the final line, so the budget matters — raise `max_tokens` in the run tab when results say the response was truncated.
+Default sampling for the pack is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 65536, `request_timeout_seconds` 3600 (the request transport streams; see METHODOLOGY). Graders answer with chain-of-thought before the final line, so the budget matters — raise `max_tokens` in the run tab when results say the response was truncated.
 
 ### CLI runner
 

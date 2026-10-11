@@ -42,7 +42,7 @@ const manifest = module.manifest ?? adapter?.manifest;
 check("adapter exports a manifest", Boolean(manifest), `${manifest?.id} ${manifest?.version}`);
 check("manifest entry exists on disk", fs.existsSync(path.join(REPO_ROOT, manifest.entry.replace(/^\.\//, ""))), manifest.entry);
 check("manifest has no repository URL", manifest.repository === undefined);
-check("pack id/version", manifest.id === "humaneval-plus-164" && manifest.version === "1.0.1");
+check("pack id/version", manifest.id === "humaneval-plus-164" && manifest.version === "1.0.2");
 
 const scenarios = await adapter.listScenarios();
 check("listScenarios() returns 164 scenarios", scenarios.length === 164, `${scenarios.length}`);

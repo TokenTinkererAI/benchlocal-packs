@@ -13,7 +13,7 @@ The app can load the working tree directly. Add to `~/.benchlocal/config.toml`:
 enabled = true
 source = "local"
 path = "<absolute path of this pack directory>"
-version = "1.0.1"
+version = "1.0.2"
 ```
 
 Notes:
@@ -28,7 +28,7 @@ The grading harness needs **Python 3.9+**. Resolution order: `LCBV6_PYTHON` (exp
 ## Running
 
 - Start with small subsets: the CLI supports `--ids abc387_b,3704,...` and `--limit N`; a full 1055-problem run is a multi-hour job.
-- Defaults: `temperature` 0, `max_tokens` 16384, model request timeout 900 s, 6 s per test case inside the harness, 300 s wall-clock cap per problem. The CLI exposes `--per-test-timeout-ms` and `--exec-timeout-ms` if your setup needs more headroom.
+- Defaults: `temperature` 0, `max_tokens` 65536, model request timeout 3600 s, 6 s per test case inside the harness, 300 s wall-clock cap per problem. The CLI exposes `--per-test-timeout-ms` and `--exec-timeout-ms` if your setup needs more headroom.
 - Some problems (166 of them) carry multi-MB test sets — expect those individual problems to take distinctly longer; the wall-clock cap protects the run.
 
 ## Troubleshooting

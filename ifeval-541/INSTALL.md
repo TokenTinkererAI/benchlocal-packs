@@ -22,7 +22,7 @@ This pack is custom — it is not distributed through the official registry. Poi
 enabled = true
 source = "local"
 path = "<absolute path of this pack directory>"
-version = "1.0.1"
+version = "1.0.2"
 ```
 
 Notes:
@@ -48,7 +48,7 @@ Any OpenAI-compatible chat endpoint works — a local server (llama.cpp,
 LM Studio, ollama) or a hosted API. Configure it in the app (base URL + model
 name; an API key if required).
 
-Defaults: temperature 0, `max_tokens` 16384, 900 s request timeout (replies are
+Defaults: temperature 0, `max_tokens` 65536, 3600 s request timeout (replies are
 requested with `stream: true` — see the Transport section of
 [METHODOLOGY.md](METHODOLOGY.md)). IFEval
 prompts are also a formatting test — instruct-tuned models sometimes burn many

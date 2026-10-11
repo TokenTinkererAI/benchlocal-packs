@@ -20,7 +20,7 @@ This pack is custom — it is not distributed through the official registry. Poi
 enabled = true
 source = "local"
 path = "<absolute path of this pack directory>"
-version = "1.0.1"
+version = "1.0.2"
 ```
 
 Notes:
@@ -33,7 +33,7 @@ Notes:
 
 Any OpenAI-compatible chat endpoint works — a local server (llama.cpp, LM Studio, ollama) or a hosted API. Configure it in the app (base URL + model name; an API key if required).
 
-Graders answer with chain-of-thought before the final line; the default `max_tokens` is 16384 and temperature 0. If results say `(response truncated - raise max_tokens)`, raise the budget for that run.
+Graders answer with chain-of-thought before the final line; the default `max_tokens` is 65536 and temperature 0. If results say `(response truncated - raise max_tokens)`, raise the budget for that run.
 
 ## 4. Run
 

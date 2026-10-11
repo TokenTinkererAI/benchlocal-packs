@@ -4,7 +4,7 @@
   "id": "mmlu-pro",
   "name": "MMLU-Pro",
   "author": "TokenTinkerer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MMLU-Pro: 12,032 challenging multi-discipline questions with up to ten options (A-J), scored by exact answer-letter match.",
   "entry": "./dist/benchlocal/index.js",
   "requirements": {
@@ -15,8 +15,8 @@
   },
   "samplingDefaults": {
     "temperature": 0,
-    "max_tokens": 16384,
-    "request_timeout_seconds": 900
+    "max_tokens": 65536,
+    "request_timeout_seconds": 3600
   },
   "theme": {
     "accent": "#0f766e"

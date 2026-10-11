@@ -33,7 +33,7 @@ The benchmark's entire check is string normalization plus equality: read the fin
 This repository is a custom BenchLocal bench pack — it needs no Docker and is not part of the official registry. Install it by registering this folder as a **local source** in the app; see [INSTALL.md](INSTALL.md) for the exact `config.toml` block.
 
 
-**Prebuilt archive:** [`math-500-1.0.1.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/math-500-v1.0.1/math-500-1.0.1.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
+**Prebuilt archive:** [`math-500-1.0.2.tar.gz`](https://github.com/TokenTinkererAI/benchlocal-packs/releases/download/math-500-v1.0.2/math-500-1.0.2.tar.gz) — ready to load directly in BenchLocal's *Bench Pack URL* box; no build step required.
 
 ## Usage
 
@@ -44,7 +44,7 @@ This repository is a custom BenchLocal bench pack — it needs no Docker and is 
 3. Run the pack. It exposes 500 scenarios — one per problem. For each scenario the pack requests one chat completion, extracts the final answer, and records the result.
 4. Read the results: correct / wrong / unparseable per problem, aggregated as accuracy and a per-subject breakdown (see Scoring below).
 
-Default sampling for the pack is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 16384, request timeout 900 s. Models that reason before answering spend tokens on their reasoning, so the budget matters — raise `max_tokens` in the run tab when results say the response was truncated.
+Default sampling for the pack is declared in `benchlocal.pack.json`: `temperature` 0, `max_tokens` 65536, request timeout 3600 s. Models that reason before answering spend tokens on their reasoning, so the budget matters — raise `max_tokens` in the run tab when results say the response was truncated.
 
 ### CLI runner
 

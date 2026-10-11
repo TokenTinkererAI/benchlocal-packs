@@ -1,6 +1,6 @@
 {
   "name": "humaneval-164",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "BenchLocal Bench Pack for OpenAI HumanEval (164 problems) with local Python execution - no Docker required.",
   "license": "MIT",
   "author": "TokenTinkerer",

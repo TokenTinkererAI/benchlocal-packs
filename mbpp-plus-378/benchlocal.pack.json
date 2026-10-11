@@ -4,7 +4,7 @@
   "id": "mbpp-plus-378",
   "name": "MBPP+-378",
   "author": "TokenTinkerer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "EvalPlus MBPP+: 378 Python problems graded by executing each submission against the expanded base+plus input suites (over 41,000 generated inputs) with EvalPlus's own comparison semantics - via a local Python interpreter, no Docker required.",
   "entry": "./dist/benchlocal/index.js",
   "requirements": {
@@ -15,8 +15,8 @@
   },
   "samplingDefaults": {
     "temperature": 0,
-    "max_tokens": 16384,
-    "request_timeout_seconds": 900
+    "max_tokens": 65536,
+    "request_timeout_seconds": 3600
   },
   "theme": {
     "accent": "#14b8a6"

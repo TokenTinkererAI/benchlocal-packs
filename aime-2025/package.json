@@ -1,6 +1,6 @@
 {
   "name": "aime-2025",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BenchLocal Bench Pack for AIME 2025 (30 competition math problems from 2025 AIME I + II) - exact integer answer-match scoring, no execution needed.",
   "license": "MIT",
   "author": "TokenTinkerer",

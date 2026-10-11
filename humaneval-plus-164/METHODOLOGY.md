@@ -279,7 +279,7 @@ Known limitations:
 ## Transport
 
 Requests are made with `stream: true` (sampling defaults, declared in
-`benchlocal.pack.json`: `temperature` 0, `max_tokens` 16384, a 900-second
+`benchlocal.pack.json`: `temperature` 0, `max_tokens` 65536, a 3600-second
 request timeout) and the Server-Sent Events reply is accumulated client-side.
 Reason: Node's built-in `fetch` (undici) enforces a fixed ~300 s
 response-headers timeout that pack code cannot raise, and non-streaming

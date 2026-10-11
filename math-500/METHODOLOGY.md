@@ -31,7 +31,7 @@ This document is the contract for the MATH-500 pack: where the data comes from, 
 
 ## Prompting protocol
 
-One chat completion per problem, temperature 0, `max_tokens` 16384, `request_timeout_seconds` 900, no tools, no few-shot examples, no self-consistency. Two messages:
+One chat completion per problem, temperature 0, `max_tokens` 65536, `request_timeout_seconds` 3600, no tools, no few-shot examples, no self-consistency. Two messages:
 
 **System:**
 
@@ -56,7 +56,7 @@ Problem:
 
 ## Transport
 
-Requests are made with `stream: true` and the SSE response is accumulated client-side. Reason: Node's built-in `fetch` (undici) enforces a fixed ~300 s response-headers timeout that pack code cannot raise, and non-streaming OpenAI-compatible servers do not send headers until generation finishes — reasoning answers needing more than ~5 minutes of generation would otherwise fail with `fetch failed` regardless of the configured `request_timeout_seconds`. With streaming, headers arrive immediately and the pack's own timeout (default 900 s) plus the caller's abort signal are the only limits. A non-SSE `application/json` response is still accepted as a fallback for servers or proxies that buffer the stream; the mock server exercises both behaviours (`--json-only` switches it to the non-streaming reply).
+Requests are made with `stream: true` and the SSE response is accumulated client-side. Reason: Node's built-in `fetch` (undici) enforces a fixed ~300 s response-headers timeout that pack code cannot raise, and non-streaming OpenAI-compatible servers do not send headers until generation finishes — reasoning answers needing more than ~5 minutes of generation would otherwise fail with `fetch failed` regardless of the configured `request_timeout_seconds`. With streaming, headers arrive immediately and the pack's own timeout (default 3600 s) plus the caller's abort signal are the only limits. A non-SSE `application/json` response is still accepted as a fallback for servers or proxies that buffer the stream; the mock server exercises both behaviours (`--json-only` switches it to the non-streaming reply).
 
 ## Answer extraction
 
@@ -144,7 +144,7 @@ The data file hash is pinned in the generator; the fixtures re-hash it, so the e
 - **Own prompt, own extractor.** MATH-500 ships no canonical prompt; the wording above is fixed and versioned with the pack. Extraction is mechanical (the three layers plus the sentence guard); a harness that grades `\boxed{}` only, or that normalizes differently, will produce different numbers on the same completions.
 - **LaTeX/markup is sent as-is.** Statements are raw LaTeX; figure-bearing problems include their Asymptote/TikZ source rather than rendered images. A model that cannot read markup is disadvantaged relative to a human reading the rendered problem.
 - **No tools, no code execution** — a pure text benchmark, even though the problems are computational and some answers (radicals, intervals, matrices) are unwieldy to reproduce exactly.
-- **Truncation is a failure mode.** Chain-of-thought can exhaust `max_tokens` (the 16384 default follows the house escalation history); truncated replies are labelled in the summary so a budget problem is not misread as a maths failure.
+- **Truncation is a failure mode.** Chain-of-thought can exhaust `max_tokens` (the 65536 default follows the house escalation history); truncated replies are labelled in the summary so a budget problem is not misread as a maths failure.
 - **Provider errors are scored 0** and marked retryable rather than retried automatically inside the pack.
 
 ## Why this pack has no Docker verifier
