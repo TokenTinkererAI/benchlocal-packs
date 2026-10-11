@@ -1,0 +1,50 @@
+# NOTICE
+
+## AIME 2026 data
+
+This pack contains all 30 problems of the **2026 American Invitational Mathematics Examination** (AIME I and AIME II, administered February 2026) — 15 problems per contest, each with its official integer answer in 0-999.
+
+The problems are competition material of the **Mathematical Association of America (MAA)** / AMC program. They are not redistributed here from an MAA file: the vendored text was taken from public evaluation mirrors that republish the 2026 AIME problem set for LLM benchmarking.
+
+### Vendored source (primary)
+
+- **`MathArena/aime_2026`** — the question set used for the MathArena leaderboard (ETH Zurich).
+  - Hub revision: `d2de22f3c656b4f56cf8981212186377d1e23bc3`; file `data/train-00000-of-00001.parquet` (10,065 bytes, SHA-256 `d91db799651b4cc1f0734f52792a695c9cc60dac342524b3d8e5b2ff31c3e957`).
+  - Licence: **CC BY-NC-SA 4.0** (Attribution-NonCommercial-ShareAlike 4.0 International). Terms and citation are reproduced in [`data/LICENSE-aime`](data/LICENSE-aime).
+  - The vendored files are a faithful projection of that table:
+    - `data/aime_2026.raw.json` — the 30 source records (`problem_idx`, `answer`, `problem`), SHA-256 `7975041d4ce0c646944ab923ca7fc361f7711677d0ab06128da539a62a9b59ed`.
+    - `data/aime_2026.jsonl` — the derived rows: `problem` text verbatim, `answer` as the published integer (with the documented correction below), plus `contest`/`number` provenance fields derived from `problem_idx`, SHA-256 `af993e0891a821c9afcfae1493713dc004b79fbd433f6c77e570f8670ba56f8a`.
+
+### Contest-partition source (answers verified, not vendored)
+
+- **`MathArena/aime_2026_I`** — revision `37806d403fa0c9ae914ee7d7da215cf2a3c7a94d`, file `data/train-00000-of-00001.parquet` (SHA-256 `224257fa2c4ceb0796205047b25f124c610bb72277cd558f68a9ee15d875c688`). Its 15 rows are byte-identical to rows 1-15 of the combined table, which fixes AIME I as problems 1-15 and AIME II as problems 16-30. A separate `MathArena/aime_2026_II` split is **not published** on the Hub.
+
+### Cross-check sources (answers verified, not vendored)
+
+| Source | Revision | File (SHA-256) | Licence | Result |
+|---|---|---|---|---|
+| `zhenghaoxu/aime-2026` | `252cd0519bef57aa55669070f5693f1e5ed1d0ee` | `data/validation-00000-of-00001.parquet` (`3dd1961af8c0a68a5c48af600798776ddc5c0e671e17d68d1be185dbd88365d3`) | none declared | 30/30 identical |
+| `lingjie23/aime_2026` | `69131f7eb3dee86616aeea73f2116257c398d54b` | `data/train-00000-of-00001.parquet` (`d91db799651b4cc1f0734f52792a695c9cc60dac342524b3d8e5b2ff31c3e957`) | cc-by-nc-sa-4.0 | 30/30 identical |
+| `qyi-iquest/AIME_2026` | `c57439ed2da90bcd8b9a342098335056c3a99497` | `AIME 26.csv` (`8b0d06d1951d0c45328a32be1ce48725d5fe0a097cd345f610e5d7d02f4895cb`) | apache-2.0 | 15/15 identical (AIME I) |
+| `baysonfox/AIME2026-I` | `39f5e2b0ac2fdc99b2a364591c475cd0c9019689` | `aime2026-I.jsonl` (`7aad8702531f5ab7a3ace17723de91fb8558fe28ca557941ced410fa4a06563c`) | mit | 15/15 identical (AIME I) |
+| `thulthula/AIME2026` | `46d04e6ea7bc570a2130342f47c7e9ba51154a2d` | `data/train-00000-of-00001.parquet` (`889cb11010deb237c12c8db98df1cf54214d203c61c57843d45d27e9b7d89f20`) | none declared | **28/30** — see below |
+
+**Cross-check result:** all 30 gold answers are identical across the primary source, `zhenghaoxu/aime-2026` and `lingjie23/aime_2026`, and problems 1-15 also match `MathArena/aime_2026_I`, `qyi-iquest/AIME_2026` and `baysonfox/AIME2026-I` (per-position comparison; zero mismatches).
+
+### Corrections to the upstream table
+
+- **AIME 2026 II Problem 10** (combined `problem_idx` 25): the upstream table lists `850`; the **official answer keys give `340`** — Art of Problem Solving, *2026 AIME II Answer Key* and *LIVE by Po-Shen Loh*, 2026 AIME II answer key. The independent mirror `thulthula/AIME2026` also carries `340` for this problem. The vendored data uses the official `340`; the raw upstream export is kept verbatim and the fix is applied as a documented, asserted correction in `scripts/generate-dataset.mjs` (the assertion makes a future upstream fix fail loudly instead of double-correcting).
+- **AIME 2026 II Problem 1** (combined `problem_idx` 16): the mirror `thulthula/AIME2026` carries `196` against the vendored `178`; the official key gives `178`, and the mirror's problem statement differs (it asks for the sum of the 11th terms instead of the 10th). The vendored `178` is correct.
+
+All 30 gold answers match the official contest keys (2026 AIME I and II) position-for-position, and match the Hub mirrors above apart from the two rows discussed here. See the provenance section of [METHODOLOGY.md](METHODOLOGY.md).
+
+### Terms of use / reproduction
+
+- The problem statements and answers remain the property of their authors (MAA competition material, as republished by the mirrors above). They are included here for non-commercial evaluation and research use.
+- The vendored text is redistributed under the upstream **CC BY-NC-SA 4.0** terms: attribution (this NOTICE and `data/LICENSE-aime`), non-commercial use, and share-alike for redistributions of the data.
+- Do not commit AIME 2026 problems into training corpora or relicense the data as MIT: only the **code** in this repository is MIT.
+- No repository may claim MAA endorsement.
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Problem text and answer key remain the work of their upstream authors and mirrors, included under the terms above.

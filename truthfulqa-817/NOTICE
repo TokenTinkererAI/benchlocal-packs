@@ -1,0 +1,17 @@
+# NOTICE
+
+## TruthfulQA data
+
+TruthfulQA MC1 is part of **TruthfulQA: "Measuring How Models Mimic Human Falsehoods"** by Stephanie Lin, Jacob Hilton and Owain Evans (arXiv:2109.07958).
+
+- Source: [truthfulqa/truthful_qa](https://huggingface.co/datasets/truthfulqa/truthful_qa) — configuration `multiple_choice`, split `validation`, file `multiple_choice/validation-00000-of-00001.parquet`.
+- Pinned revision: `741b8276f2d1982aa3d5b832d3ee81ed3b896490`.
+- License: **Apache License 2.0** — a copy of the upstream license text is kept at `data/LICENSE-truthfulqa` (the LICENSE of the upstream repository `sylinrl/TruthfulQA`).
+- Copyright © the TruthfulQA authors.
+- Vendored dataset file: `data/truthfulqa_mc1_validation.parquet` (271,033 bytes; content unmodified). SHA-256: `23f08e230ca4ed66babf3a72419af7cbde1f3d734dd396ac4cf6d088bd162afd`.
+- Vendored license copy: `data/LICENSE-truthfulqa`. SHA-256: `c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4`.
+- Generated dataset module: `lib/generated/questions.ts` (derived deterministically from the vendored parquet; SHA-256: `8a4c0ce8077c94aaefd20dccbe03e40b9d062d53b8a70b4a1a696f6a992d877e`).
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Question text and the answer key remain the work of the upstream TruthfulQA authors, included here under Apache-2.0 with the attribution above.

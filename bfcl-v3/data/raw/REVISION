@@ -1,0 +1,23 @@
+Berkeley Function Calling Leaderboard (BFCL) v3 - vendored evaluation data
+==========================================================================
+
+Source: HuggingFace dataset gorilla-llm/Berkeley-Function-Calling-Leaderboard
+Pinned revision: 61fc0608cfd831fcfbbaa676ebdfef0ed963eeda
+License: Apache-2.0 (see LICENSE in this directory).
+
+Only the phase-1 AST-match, single-turn, non-live categories that this pack
+evaluates are vendored here, together with their possible_answer files.
+Every file below is byte-identical to the pinned revision.
+
+sha256  file
+fbc37b2ad252bf9af985582e0e07b456173fe627d957491472ea9cef5fb83158  BFCL_v3_simple.json
+aef168155ebd74b7ac2401198b201343bc7d16d7a3d7e0d4e6d8ee82c6969b2a  BFCL_v3_multiple.json
+fad375d68295776efb63e5aa331dd884f8635e7bb50e05908113c74f14281c3c  BFCL_v3_parallel.json
+8863ea8433239f55c5f016154cf0830853c89f693c6ea270396a2fa121960579  BFCL_v3_parallel_multiple.json
+975f51c51f688649fd190078efd87081241e0a326f9114a2ea3c1ca2440d8690  BFCL_v3_irrelevance.json
+2cf021e2e4f81f1097aab31763423b785b3aaa73df8203a4f4ae3900822b0d53  BFCL_v3_sql.json
+2911a2bc00df82c4f999ffa64fedb0164cb88e96212ffa5972087eb91fd496ee  possible_answer/BFCL_v3_simple.json
+244e00ce9395df948bcafc7bee64e8f9c87ef70887587d83cae45b13699f3047  possible_answer/BFCL_v3_multiple.json
+3af54bf04e5b7640b03a9b6a82440f52474feb24b398f94435fd2b155c7727de  possible_answer/BFCL_v3_parallel.json
+df4d2c16238c1465dc04697c273cf3ab4a450075fcd274e3dc86ad5bf0049b75  possible_answer/BFCL_v3_parallel_multiple.json
+066ee73429e1d16e0a28ee7f9a7877f313892e94f6b68fb200b14253c8d7c154  possible_answer/BFCL_v3_sql.json

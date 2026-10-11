@@ -1,0 +1,115 @@
+# HMMT February 2026 — data licence, terms and provenance
+#
+# This file covers the vendored data in data/hmmt_feb_2026.jsonl only. The code
+# in this repository is MIT licensed (see ../LICENSE).
+
+===============================================================================
+1. PRIMARY SOURCE — MathArena/hmmt_feb_2026 (CC BY-NC-SA 4.0)
+===============================================================================
+
+Dataset card: https://huggingface.co/datasets/MathArena/hmmt_feb_2026
+Homepage:     https://matharena.ai/
+Repository:   https://github.com/eth-sri/matharena
+Revision:     02fba4f74d8e68e73e66a02d540fd979c05c274c
+Licence:      cc-by-nc-sa-4.0  (Attribution-NonCommercial-ShareAlike 4.0 International)
+Licence text: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+Upstream card, verbatim:
+
+    ### Dataset Summary
+    This dataset contains the questions from HMMT February 2026 used for the
+    MathArena Leaderboard.
+
+    ### Data Fields
+    - `problem_idx` (int64): Problem index within the corresponding MathArena
+      benchmark.
+    - `answer` (string): Gold final answer.
+    - `problem_type` (list[string]): Problem type/category labels.
+    - `problem` (string): Problem statement, usually stored as LaTeX source.
+
+    ### Source Data
+    The original questions were sourced from the HMMT February 2026 competition.
+
+    ### Licensing Information
+    This dataset is licensed under the Attribution-NonCommercial-ShareAlike 4.0
+    International (CC BY-NC-SA 4.0). Please abide by the license when using the
+    provided data.
+
+    ### Citation Information
+    @article{dekoninck2026matharena,
+          title={Beyond Benchmarks: MathArena as an Evaluation Platform for
+                 Mathematics with LLMs},
+          author={Jasper Dekoninck and Nikola Jovanović and Tim Gehrunger and
+                  Kári Rögnvaldsson and Ivo Petrov and Chenhao Sun and
+                  Martin Vechev},
+          year={2026},
+          eprint={2605.00674},
+          archivePrefix={arXiv},
+          primaryClass={cs.CL},
+          url={https://arxiv.org/abs/2605.00674},
+    }
+
+Upstream file: data/train-00000-of-00001.parquet (33 rows)
+  SHA-256: e5fcff6b1c2262841c0c37bf6d7b42529f284528d5f0d5c45c52e8bf0654a916
+
+Redistribution terms applied here: attribution (this file + ../NOTICE),
+non-commercial use, share-alike for redistributions of the data. The pack's
+code remains MIT; the data does not.
+
+===============================================================================
+2. AUTHORITATIVE ANSWER KEY — HMMT official solutions (verified, not vendored)
+===============================================================================
+
+Official HMMT February 2026 archive page:
+  https://www.hmmt.org/www/archive/292
+
+Official solution PDFs (hosted on the HMMT archive bucket; fetched for the
+answer cross-check only, not vendored):
+
+  Algebra & Number Theory round
+    https://hmmt-archive.s3.amazonaws.com/tournaments/2026/feb/algnt/solutions.pdf
+    SHA-256 f90d8c81724646e8f7167dd1326e4f6f406b4c2af850ad1d2b239eb9e470d814
+
+  Combinatorics round
+    https://hmmt-archive.s3.amazonaws.com/tournaments/2026/feb/comb/solutions.pdf
+    SHA-256 a298ab37630c16a047d29d4f43139cbc32136fa1830b9d7ded4b968314894627
+
+  Geometry round
+    https://hmmt-archive.s3.amazonaws.com/tournaments/2026/feb/geo/solutions.pdf
+    SHA-256 1dc246db1ae8507b8e83c7acf55e755b0225a95e60f46187801f019817e7f124
+
+  Team round
+    https://hmmt-archive.s3.amazonaws.com/tournaments/2026/feb/team/solutions.pdf
+    SHA-256 0da24d26719f51e9c5df3e315c6cfa7391088e65543f5ab496677190d9b2fc3c
+
+Cross-check result: all 33 gold answers in the vendored file match the official
+published solutions problem-for-problem (Algebra & Number Theory 1-10,
+Combinatorics 1-10, Geometry 1-10, Team 2, 3, 5). Details and the per-problem
+mapping are in ../METHODOLOGY.md.
+
+===============================================================================
+3. UNDERLYING MATERIAL — HMMT
+===============================================================================
+
+The HMMT February 2026 problem set is competition material of the Harvard-MIT
+Mathematics Tournament (HMMT), a student-run tournament organised by students
+of Harvard University and the Massachusetts Institute of Technology
+(February 14, 2026 sitting). The mirror above republishes the problems for LLM
+evaluation. This pack redistributes them solely for non-commercial
+benchmarking and research, with attribution to the upstream mirror and to HMMT
+as the origin of the contest. Nothing here implies HMMT endorsement.
+
+===============================================================================
+4. VENDORED FILE — data/hmmt_feb_2026.jsonl
+===============================================================================
+
+33 records, one per line:
+  {"problem_idx": 1..33, "problem": "<verbatim statement>",
+   "answer": "<verbatim final answer>", "problem_type": ["<label>", ...]}
+SHA-256: fbcd8e4f4325f98ec90c9064119c3f4f8b423de81b548643f43e0d725e5a71d4
+
+The file is a faithful projection of the upstream parquet: `problem` and
+`answer` verbatim; `problem_type` values with surrounding whitespace stripped
+(the upstream list values carry a leading space on all but the first entry).
+The file is pinned in scripts/generate-dataset.mjs; the pack build fails if it
+changes. scripts/derive-dataset.py regenerates it from the pinned parquet.

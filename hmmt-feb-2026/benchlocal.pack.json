@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "id": "hmmt-feb-2026",
+  "name": "HMMT-Feb-2026",
+  "author": "TokenTinkerer",
+  "version": "1.0.0",
+  "description": "HMMT February 2026: all 33 short-answer problems of the Harvard-MIT Mathematics Tournament February 14, 2026 sitting (Algebra & Number Theory, Combinatorics, Geometry, and Team rounds), scored by boxed-answer extraction with textual LaTeX normalization against the official gold answer. No code execution required.",
+  "entry": "./dist/benchlocal/index.js",
+  "requirements": {
+    "benchlocal": {
+      "minVersion": "0.2.0"
+    },
+    "hostFeatures": ["inferenceEndpoints"]
+  },
+  "samplingDefaults": {
+    "temperature": 0,
+    "max_tokens": 65536,
+    "request_timeout_seconds": 3600
+  },
+  "theme": {
+    "accent": "#7c3aed"
+  },
+  "capabilities": {
+    "tools": false,
+    "multiTurn": false,
+    "streamingProgress": true,
+    "verification": false
+  }
+}

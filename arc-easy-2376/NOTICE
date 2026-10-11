@@ -1,0 +1,15 @@
+# NOTICE
+
+## AI2 ARC — ARC-Easy test split data
+
+AI2 ARC (the "AI2 Reasoning Challenge") is by Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa Schoenick and Oyvind Tafjord: *"Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge"* (arXiv:1803.05457).
+
+- Source: [`allenai/ai2_arc`](https://huggingface.co/datasets/allenai/ai2_arc), revision `210d026faf9955653af8916fad021475a3f00453`, config `ARC-Easy`, split `test`.
+- Source file: `ARC-Easy/test-00000-of-00001.parquet` — SHA-256 `4160597d618ae851c7eb04e281574f3f654776216ac6b6641588d64527b47177` (346,257 bytes).
+- License: **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)** — a copy of the upstream license text is kept at `data/LICENSE-arc`.
+- Vendored file: `data/arc_easy_test.jsonl` — the 2,376 test rows serialized verbatim (fields `id`, `question`, `choices.text`, `choices.label`, `answerKey`, in source row order), one JSON object per line, UTF-8, LF line endings. SHA-256 `7c73345800fdb847ae5fca138cb26c65c718087a490170068631c50dee1d6fec`.
+- The deterministic option shuffle and answer-key remapping are applied at build time (`scripts/generate-dataset.mjs`); the vendored file is an unmodified serialization of the upstream rows.
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Question text and the answer key remain the work of the upstream AI2 ARC authors, included here under CC BY-SA 4.0 with the attribution above; redistribution of the vendored data is subject to the same Attribution-ShareAlike terms.

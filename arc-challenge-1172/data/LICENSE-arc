@@ -1,0 +1,82 @@
+# ARC-Challenge — data licence, terms and provenance
+#
+# This file covers the vendored data in data/arc_challenge_test.parquet and
+# data/arc_challenge_test.csv only. The code in this repository is MIT licensed
+# (see ../LICENSE).
+
+===============================================================================
+1. PRIMARY SOURCE — allenai/ai2_arc (CC BY-SA 4.0)
+===============================================================================
+
+Dataset card: https://huggingface.co/datasets/allenai/ai2_arc
+Revision:     210d026faf9955653af8916fad021475a3f00453
+Config/split: ARC-Challenge / test (1,172 rows)
+Licence:      cc-by-sa-4.0  (Creative Commons Attribution-ShareAlike 4.0
+              International)
+Licence text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+Licence deed: https://creativecommons.org/licenses/by-sa/4.0/
+
+Benchmark:    AI2 ARC — the AI2 Reasoning Challenge
+Paper:        "Think you have Solved Question Answering? Try ARC, the AI2
+              Reasoning Challenge", Peter Clark, Isaac Cowhey, Oren Etzioni,
+              Tushar Khot, Ashish Sabharwal, Carissa Schoenick, Oyvind Tafjord,
+              2018 — arXiv:1803.05457
+
+Upstream dataset card, licence field, verbatim:
+
+    license:
+    - cc-by-sa-4.0
+
+The ARC-Challenge test split is a set of grade-school science questions, each
+multiple-choice, assembled by the Allen Institute for AI from a range of US
+state exams and other sources. The HuggingFace dataset card records the licence
+as CC BY-SA 4.0; the metadata section for licensing on that card itself reads
+"[More Information Needed]", so the licence named above is the one declared in
+the card's `license` field and the one applied here.
+
+===============================================================================
+2. ATTRIBUTION (CC BY-SA 4.0, section 3)
+===============================================================================
+
+You must give appropriate credit, provide a link to the licence, and indicate
+if changes were made. Applied here:
+
+  - credit: this file, ../NOTICE and the generated header in
+    ../lib/generated/questions.ts name the source repository, the pinned
+    revision, the paper and its authors;
+  - link to the licence: the URLs above;
+  - indication of changes: the transform is documented below and in
+    ../METHODOLOGY.md — the upstream parquet is stored verbatim and a
+    deterministic CSV projection of it is generated; the pack build then
+    relabels numeric option labels positionally to A-E and shuffles option
+    order deterministically per question.
+
+ShareAlike: if you remix, transform, or build upon the data, you must
+distribute your contributions under the same licence as the original. Any
+redistribution of the vendored data in this repository must therefore remain
+under CC BY-SA 4.0 with the attribution above. The pack's own code is MIT and
+is not a derivative of the data.
+
+No endorsement: nothing in this pack implies endorsement by the Allen Institute
+for AI, the ARC authors, or any examination board whose questions appear in the
+dataset.
+
+===============================================================================
+3. VENDORED FILES
+===============================================================================
+
+data/arc_challenge_test.parquet
+  The upstream parquet, stored verbatim.
+  SHA-256: 62f03257e737aed263f55c6abf87c7bb0028a44a6bdd2a26eb1279eb42c1d1e9
+
+data/arc_challenge_test.csv
+  Deterministic transform of the parquet, 1,172 rows, one per question:
+    id, question, option_1_label, option_1_text, ... option_5_label,
+    option_5_text, answer_key
+  Option slots beyond a record's option count are empty. The transform is
+  scripts/vendor-data.py (requires pandas + pyarrow); the same parquet yields a
+  byte-identical CSV.
+  SHA-256: 74c0ca446f700bc6e71e0c3df609934372a0141a6ff499166a48b7758be4b7d8
+
+Both SHA-256 values are pinned in ../scripts/generate-dataset.mjs and recorded
+in the generated module header; the pack build fails if the CSV changes.

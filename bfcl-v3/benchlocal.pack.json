@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "id": "bfcl-v3",
+  "name": "BFCL-v3",
+  "author": "TokenTinkerer",
+  "version": "1.0.0",
+  "description": "Berkeley Function Calling Leaderboard v3, phase 1: the single-turn, non-live categories graded by AST match (simple, multiple, parallel, parallel_multiple, sql, irrelevance). Function documents are declared as tools; the emitted tool calls are compared against the dataset's ground-truth calls.",
+  "entry": "./dist/benchlocal/index.js",
+  "requirements": {
+    "benchlocal": {
+      "minVersion": "0.2.0"
+    },
+    "hostFeatures": ["inferenceEndpoints"]
+  },
+  "samplingDefaults": {
+    "temperature": 0,
+    "max_tokens": 65536,
+    "request_timeout_seconds": 3600
+  },
+  "theme": {
+    "accent": "#f97316"
+  },
+  "capabilities": {
+    "tools": true,
+    "multiTurn": false,
+    "streamingProgress": true,
+    "verification": false
+  }
+}

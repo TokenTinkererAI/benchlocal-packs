@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "id": "arc-easy-2376",
+  "name": "ARC-Easy-2376",
+  "author": "TokenTinkerer",
+  "version": "1.0.0",
+  "description": "AI2 ARC (Reasoning Challenge), ARC-Easy test split: 2376 grade-school science questions, multiple-choice, scored by exact answer match against the published key.",
+  "entry": "./dist/benchlocal/index.js",
+  "requirements": {
+    "benchlocal": {
+      "minVersion": "0.2.0"
+    },
+    "hostFeatures": ["inferenceEndpoints"]
+  },
+  "samplingDefaults": {
+    "temperature": 0,
+    "max_tokens": 65536,
+    "request_timeout_seconds": 3600
+  },
+  "theme": {
+    "accent": "#fbbf24"
+  },
+  "capabilities": {
+    "tools": false,
+    "multiTurn": false,
+    "streamingProgress": true,
+    "verification": false
+  }
+}

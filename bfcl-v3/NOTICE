@@ -1,0 +1,38 @@
+# NOTICE
+
+## BFCL v3 data
+
+The Berkeley Function Calling Leaderboard (BFCL) evaluation data is **Berkeley Function Calling Leaderboard** by Fanjia Yan, Huanzhi Mao, Charlie Cheng-Jie Ji, Tianjun Zhang, Shishir G. Patil, Ion Stoica and Joseph E. Gonzalez (UC Berkeley).
+
+- Source: HuggingFace dataset [gorilla-llm/Berkeley-Function-Calling-Leaderboard](https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard).
+- Pinned revision: `61fc0608cfd831fcfbbaa676ebdfef0ed963eeda`.
+- License: **Apache License 2.0** — a copy of the upstream license text is kept at `data/raw/LICENSE`.
+- Vendored files (content unmodified, byte-identical to the pinned revision) and their SHA-256 digests:
+
+| File | SHA-256 |
+| --- | --- |
+| `data/raw/BFCL_v3_simple.json` | `fbc37b2ad252bf9af985582e0e07b456173fe627d957491472ea9cef5fb83158` |
+| `data/raw/BFCL_v3_multiple.json` | `aef168155ebd74b7ac2401198b201343bc7d16d7a3d7e0d4e6d8ee82c6969b2a` |
+| `data/raw/BFCL_v3_parallel.json` | `fad375d68295776efb63e5aa331dd884f8635e7bb50e05908113c74f14281c3c` |
+| `data/raw/BFCL_v3_parallel_multiple.json` | `8863ea8433239f55c5f016154cf0830853c89f693c6ea270396a2fa121960579` |
+| `data/raw/BFCL_v3_irrelevance.json` | `975f51c51f688649fd190078efd87081241e0a326f9114a2ea3c1ca2440d8690` |
+| `data/raw/BFCL_v3_sql.json` | `2cf021e2e4f81f1097aab31763423b785b3aaa73df8203a4f4ae3900822b0d53` |
+| `data/raw/possible_answer/BFCL_v3_simple.json` | `2911a2bc00df82c4f999ffa64fedb0164cb88e96212ffa5972087eb91fd496ee` |
+| `data/raw/possible_answer/BFCL_v3_multiple.json` | `244e00ce9395df948bcafc7bee64e8f9c87ef70887587d83cae45b13699f3047` |
+| `data/raw/possible_answer/BFCL_v3_parallel.json` | `3af54bf04e5b7640b03a9b6a82440f52474feb24b398f94435fd2b155c7727de` |
+| `data/raw/possible_answer/BFCL_v3_parallel_multiple.json` | `df4d2c16238c1465dc04697c273cf3ab4a450075fcd274e3dc86ad5bf0049b75` |
+| `data/raw/possible_answer/BFCL_v3_sql.json` | `066ee73429e1d16e0a28ee7f9a7877f313892e94f6b68fb200b14253c8d7c154` |
+
+Only the phase-1 categories this pack evaluates are vendored: the single-turn, non-live `simple`, `multiple`, `parallel`, `parallel_multiple` and `irrelevance` categories, and the `sql` category, together with their `possible_answer` files. The `live_*`, `exec_*`, `multi_turn_*`, `chatable`, `java`, `javascript` and `rest` categories are not vendored.
+
+### Excluded entries
+
+Nine `sql` entries are present in the vendored upstream file but excluded from the graded set, because their ground truth is unsatisfiable under BFCL's own AST checker (malformed nested-array `insert_values`, mixing integer and float literals). They are listed for traceability and documented in [METHODOLOGY.md](METHODOLOGY.md):
+
+```
+sql_18, sql_19, sql_28, sql_29, sql_38, sql_39, sql_49, sql_68, sql_69
+```
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. The benchmark data (request texts, function documents and ground-truth calls) remains the work of the upstream BFCL authors, included here under Apache-2.0 with the attribution above.

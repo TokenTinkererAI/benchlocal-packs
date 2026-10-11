@@ -1,0 +1,30 @@
+# NOTICE
+
+## ARC data
+
+**AI2 ARC — the AI2 Reasoning Challenge** ("Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge", Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa Schoenick and Oyvind Tafjord, 2018; arXiv:1803.05457).
+
+### Pinned source
+
+- Repository: [allenai/ai2_arc](https://huggingface.co/datasets/allenai/ai2_arc)
+- Revision: `210d026faf9955653af8916fad021475a3f00453`
+- Config / split: `ARC-Challenge` / `test` (1,172 rows)
+- Source file: `ARC-Challenge/test-00000-of-00001.parquet`
+- Source URL: `https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet`
+
+### Vendored files
+
+| File | Contents | SHA-256 |
+| --- | --- | --- |
+| `data/arc_challenge_test.parquet` | the upstream parquet, stored verbatim | `62f03257e737aed263f55c6abf87c7bb0028a44a6bdd2a26eb1279eb42c1d1e9` |
+| `data/arc_challenge_test.csv` | deterministic transform of the parquet (one row per question: id, question, up to five label/text option pairs, `answer_key`) | `74c0ca446f700bc6e71e0c3df609934372a0141a6ff499166a48b7758be4b7d8` |
+
+The option-order shuffle is applied at build time, not to the vendored files.
+
+### License
+
+**Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**. The terms and the attribution statement are reproduced in [`data/LICENSE-arc`](data/LICENSE-arc). Redistributions of the data must preserve the attribution and the share-alike terms. No endorsement by the AI2 ARC authors is implied.
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Question text and the answer key remain the work of the upstream ARC authors, included here under CC BY-SA 4.0 with the attribution above.

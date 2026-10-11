@@ -1,0 +1,25 @@
+# NOTICE
+
+## API-Bank data
+
+API-Bank is **"API-Bank: A Comprehensive Benchmark for Tool-Augmented LLMs"** by Minghao Li, Yingxiu Zhao, Bowen Yu, Feifan Song, Hangyu Li, Haiyang Yu, Zhoujun Li, Fei Huang and Yongbin Li (EMNLP 2023; arXiv:2304.08244).
+
+- Upstream project: [AlibabaResearch/DAMO-ConvAI — api-bank](https://github.com/AlibabaResearch/DAMO-ConvAI/tree/main/api-bank) (73 API tools, 314 tool-use dialogues, 753 API calls).
+- Dataset distribution used here: HuggingFace dataset [`liminghao1630/API-Bank`](https://huggingface.co/datasets/liminghao1630/API-Bank), **pinned revision `12e8158b7628c168f07e8f31fbbe3445e99f44cf`**.
+- License: **MIT**, Copyright © 2022 Alibaba Research. A copy of the upstream license text is kept at `data/LICENSE-apibank`.
+
+Vendored files (content unmodified; every scenario the pack evaluates is derived from these three files only):
+
+| Vendored file | Vendored from (at the pinned revision) | SHA-256 |
+| --- | --- | --- |
+| `data/level-1-api.json` | `test-data/level-1-api.json` | `0d3155c5495399836b5b1f1cc4eb6d5d50efa16b2734af50a016a158e9dd79bb` |
+| `data/level-2-api.json` | `test-data/level-2-api.json` | `c61966448d9d5cf98334f39b44c0db1fe5a9c6c84a1f53e652f4aacdbbfc5da0` |
+| `data/level-3.json` | `test-data/level-3.json` | `29542493a302915303d5d67f868282ddda46fa15ba059a4bcf38c6687be29d55` |
+
+The `-response` counterparts of these files (`level-1-response.json`, `level-2-response.json`, the level-3 batch variants and their `-response` files) are **not** vendored: this pack grades the API-call sequence only, and every scenario it evaluates is derived from the three files above. `scripts/generate-dataset.mjs` re-checks each file's SHA-256 before building anything, and the vendored SHA-256 values are recorded in the generated header of `lib/generated/scenarios.ts`.
+
+The pack applies one deterministic transform at build time — API-definition extraction, per-step dialogue re-ordering and de-duplication, and Mock-result harvesting — which never mutates the vendored files. See [METHODOLOGY.md](METHODOLOGY.md).
+
+## This pack
+
+All code in this repository is MIT licensed — see [LICENSE](LICENSE), Copyright © 2026 TokenTinkerer. Scenario prompts, expected call sequences and recorded API results remain the work of the upstream API-Bank authors, included here under MIT with the attribution above.

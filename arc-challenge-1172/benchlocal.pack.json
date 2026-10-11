@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "id": "arc-challenge-1172",
+  "name": "ARC-Challenge-1172",
+  "author": "TokenTinkerer",
+  "version": "1.0.0",
+  "description": "AI2 ARC Reasoning Challenge (ARC-Challenge test split): 1172 grade-school science questions, multiple-choice, scored by exact letter match against the published key.",
+  "entry": "./dist/benchlocal/index.js",
+  "requirements": {
+    "benchlocal": {
+      "minVersion": "0.2.0"
+    },
+    "hostFeatures": ["inferenceEndpoints"]
+  },
+  "samplingDefaults": {
+    "temperature": 0,
+    "max_tokens": 65536,
+    "request_timeout_seconds": 3600
+  },
+  "theme": {
+    "accent": "#f59e0b"
+  },
+  "capabilities": {
+    "tools": false,
+    "multiTurn": false,
+    "streamingProgress": true,
+    "verification": false
+  }
+}

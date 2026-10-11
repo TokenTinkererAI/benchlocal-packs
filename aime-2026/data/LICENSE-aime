@@ -1,0 +1,181 @@
+# AIME 2026 — data licence, terms and provenance
+#
+# This file covers the vendored data in data/aime_2026.raw.json and
+# data/aime_2026.jsonl only. The code in this repository is MIT licensed
+# (see ../LICENSE).
+
+===============================================================================
+1. PRIMARY SOURCE — MathArena/aime_2026 (CC BY-NC-SA 4.0)
+===============================================================================
+
+Dataset card: https://huggingface.co/datasets/MathArena/aime_2026
+Homepage:     https://matharena.ai/
+Repository:   https://github.com/eth-sri/matharena
+Revision:     d2de22f3c656b4f56cf8981212186377d1e23bc3
+File:         data/train-00000-of-00001.parquet
+              (10,065 bytes, SHA-256
+               d91db799651b4cc1f0734f52792a695c9cc60dac342524b3d8e5b2ff31c3e957)
+Licence:      cc-by-nc-sa-4.0  (Attribution-NonCommercial-ShareAlike 4.0 International)
+Licence text: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+Upstream card, verbatim:
+
+    ### Dataset Summary
+    This dataset contains the questions from AIME 2026 used for the MathArena
+    Leaderboard
+
+    ### Data Fields
+    The dataset contains the following fields:
+
+    - `problem_idx` (`int64`): Problem index within the corresponding MathArena
+      benchmark.
+    - `answer` (`int64`): Gold final answer.
+    - `problem` (`string`): Problem statement, usually stored as LaTeX source.
+
+    ### Source Data
+    The original questions were sourced from the AIME 2026 competition.
+    Questions were extracted, converted to LaTeX and verified.
+
+    ### Licensing Information
+    This dataset is licensed under the Attribution-NonCommercial-ShareAlike 4.0
+    International (CC BY-NC-SA 4.0). Please abide by the license when using the
+    provided data.
+
+    ### Citation Information
+    @article{dekoninck2026matharena,
+          title={Beyond Benchmarks: MathArena as an Evaluation Platform for
+                 Mathematics with LLMs},
+          author={Jasper Dekoninck and Nikola Jovanović and Tim Gehrunger and
+                  Kári Rögnvaldsson and Ivo Petrov and Chenhao Sun and
+                  Martin Vechev},
+          year={2026},
+          eprint={2605.00674},
+          archivePrefix={arXiv},
+          primaryClass={cs.CL},
+          url={https://arxiv.org/abs/2605.00674},
+    }
+
+Upstream evaluation card (eval.yaml), verbatim:
+
+    name: MathArena AIME 2026
+    description: The American Invitational Mathematics Exam (AIME) is a two-part
+      15-question, 3-hour examination used to determine qualification for the
+      USA Mathematical Olympiad (USAMO). Each answer is an integer between 0 and
+      999 inclusive.
+    evaluation_framework: math-arena
+
+    tasks:
+      - id: MathArena/aime_2026
+        config: default
+        split: train
+
+Redistribution terms applied here: attribution (this file + ../NOTICE),
+non-commercial use, share-alike for redistributions of the data. The pack's
+code remains MIT; the data does not.
+
+===============================================================================
+2. CONTEST-PARTITION SOURCE (answers verified, not vendored)
+===============================================================================
+
+MathArena/aime_2026_I
+  Card:     https://huggingface.co/datasets/MathArena/aime_2026_I
+  Revision: 37806d403fa0c9ae914ee7d7da215cf2a3c7a94d
+  File:     data/train-00000-of-00001.parquet
+            sha256 224257fa2c4ceb0796205047b25f124c610bb72277cd558f68a9ee15d875c688
+  Rows:     15 (AIME I)
+  Role:     Rows 1-15 of the combined MathArena/aime_2026 table are byte-identical
+            to this split (problem text and answers), which fixes AIME I = rows
+            1-15 and AIME II = rows 16-30.
+
+A separate MathArena/aime_2026_II split is NOT published on the Hub (the API
+returns no such dataset), so the AIME II half is the deduced complement.
+
+===============================================================================
+3. CROSS-CHECK SOURCES (answers verified, not vendored)
+===============================================================================
+
+zhenghaoxu/aime-2026
+  Card:     https://huggingface.co/datasets/zhenghaoxu/aime-2026
+  Revision: 252cd0519bef57aa55669070f5693f1e5ed1d0ee
+  Licence:  none declared on the dataset card
+  File:     data/validation-00000-of-00001.parquet
+            sha256 3dd1961af8c0a68a5c48af600798776ddc5c0e671e17d68d1be185dbd88365d3
+  Fields:   messages (chat-wrapped problem), label (gold answer), metadata.
+  Result:   all 30 answers identical.
+
+lingjie23/aime_2026
+  Card:     https://huggingface.co/datasets/lingjie23/aime_2026
+  Revision: 69131f7eb3dee86616aeea73f2116257c398d54b
+  Licence:  cc-by-nc-sa-4.0
+  File:     data/train-00000-of-00001.parquet
+            sha256 d91db799651b4cc1f0734f52792a695c9cc60dac342524b3d8e5b2ff31c3e957
+            (byte-identical to the primary MathArena/aime_2026 parquet)
+  Fields:   problem_idx, answer, problem.
+  Result:   all 30 answers identical.
+
+qyi-iquest/AIME_2026
+  Card:     https://huggingface.co/datasets/qyi-iquest/AIME_2026
+  Revision: c57439ed2da90bcd8b9a342098335056c3a99497
+  Licence:  apache-2.0
+  File:     AIME 26.csv
+            sha256 8b0d06d1951d0c45328a32be1ce48725d5fe0a097cd345f610e5d7d02f4895cb
+  Fields:   id, problem, answer (answer as int64).
+  Rows:     15 (AIME I); all 15 answers identical.
+
+baysonfox/AIME2026-I
+  Card:     https://huggingface.co/datasets/baysonfox/AIME2026-I
+  Revision: 39f5e2b0ac2fdc99b2a364591c475cd0c9019689
+  Licence:  mit
+  File:     aime2026-I.jsonl
+            sha256 7aad8702531f5ab7a3ace17723de91fb8558fe28ca557941ced410fa4a06563c
+  Fields:   question, answer (answer as string).
+  Rows:     15 (AIME I); all 15 answers identical.
+
+thulthula/AIME2026
+  Card:     https://huggingface.co/datasets/thulthula/AIME2026
+  Revision: 46d04e6ea7bc570a2130342f47c7e9ba51154a2d
+  Licence:  none declared on the dataset card
+  File:     data/train-00000-of-00001.parquet
+            sha256 889cb11010deb237c12c8db98df1cf54214d203c61c57843d45d27e9b7d89f20
+  Fields:   number, problem, final_answer, solution.
+  Result:   28/30. Disagreements (flagged, not fixed):
+              - AIME II Problem 1 (problem_idx 16): mirror 196 vs vendored 178;
+                the mirror states the sum of the $11$th terms, the vendored
+                statement (and the other full mirrors) state the $10$th terms.
+              - AIME II Problem 10 (problem_idx 25): mirror 340 vs vendored 850
+                (statements materially identical).
+
+Cross-check performed for all 30 problems: answers identical across the primary
+source, zhenghaoxu/aime-2026 and lingjie23/aime_2026, and problems 1-15 also
+match MathArena/aime_2026_I, qyi-iquest/AIME_2026 and baysonfox/AIME2026-I.
+Details in ../METHODOLOGY.md and ../NOTICE.
+
+===============================================================================
+4. UNDERLYING MATERIAL — MAA / AMC
+===============================================================================
+
+The 2026 AIME I and AIME II problem sets are competition material of the
+Mathematical Association of America (MAA) / AMC program (AIME I and AIME II
+administered February 2026). The mirrors above republish the problems for LLM
+evaluation. This pack redistributes them solely for non-commercial benchmarking
+and research, with attribution to the upstream mirrors and to the MAA as the
+origin of the contests. Nothing here implies MAA endorsement. AIME answers are
+integers from 000 to 999 by contest rule.
+
+===============================================================================
+5. VENDORED FILES
+===============================================================================
+
+data/aime_2026.raw.json — 30 source records taken verbatim from the
+MathArena/aime_2026 parquet. Each record:
+  {"problem_idx": 1..30, "answer": <int 0-999>, "problem": "<verbatim statement>"}
+SHA-256: 7975041d4ce0c646944ab923ca7fc361f7711677d0ab06128da539a62a9b59ed
+
+data/aime_2026.jsonl — 30 records, one per line, derived deterministically
+from the raw export:
+  {"problem_idx": 1..30, "contest": "AIME 2026 I" | "AIME 2026 II",
+   "number": 1..15, "problem": "<verbatim statement>", "answer": <int 0-999>}
+SHA-256: c5f88be26f7bc7f643c96d5c349e924056076dffbdee886951cb066e08831624
+
+Both files are pinned in scripts/generate-dataset.mjs; the pack build fails if
+either changes.
